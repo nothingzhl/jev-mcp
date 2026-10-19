@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "suite": "synthetic-verify",
+  "suiteVersion": "1.0.0",
+  "recipeId": "verify-claims",
+  "recipeVersion": "1.0.0",
+  "samples": [
+    {
+      "id": "three-verdicts",
+      "input": {
+        "claims": [
+          { "id": "passed", "claim": "The synthetic check passed.", "evidence": "Check completed: 3 passed, 0 failed." },
+          { "id": "failed", "claim": "The synthetic check passed.", "evidence": "Check completed: 0 passed, 3 failed." },
+          { "id": "planned", "claim": "The check ran successfully.", "evidence": "Next step: run the check." }
+        ]
+      },
+      "expected": {
+        "claims": [
+          { "id": "passed", "verdict": "supported" },
+          { "id": "failed", "verdict": "contradicted" },
+          { "id": "planned", "verdict": "insufficient" }
+        ]
+      }
+    },
+    {
+      "id": "empty-evidence",
+      "input": { "claims": [{ "id": "empty", "claim": "The check passed.", "evidence": "" }] },
+      "expected": { "claims": [{ "id": "empty", "verdict": "insufficient" }] }
+    }
+  ]
+}

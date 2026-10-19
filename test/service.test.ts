@@ -86,3 +86,73 @@ test("configuration rejects invalid retry/deadline budgets", () => {
     assert.throws(() => readConfig(env), { code: "CONFIGURATION" });
   }
 });
+
+test("pre-aborted and just-granted cancellation never initializes dependencies and does not leak permits", async () => {
+  let calls = 0;
+  const service = new JudgmentService({ config, store: () => memoryStore([]),
+    provider: () => { calls++; return { async evaluate(request) { return response(request); } }; } });
+  const aborted = new AbortController();
+  aborted.abort(new Error("private-abort-reason"));
+  await assert.rejects(service.run("rank-candidates", input, aborted.signal), { code: "TIMEOUT", message: "Evaluation was cancelled." });
+  const granted = new AbortController();
+  const run = service.run("rank-candidates", input, granted.signal);
+  granted.abort();
+  await assert.rejects(run, { code: "TIMEOUT" });
+  assert.equal(calls, 0);
+  await Promise.all(Array.from({ length: 4 }, () => service.run("rank-candidates", input)));
+  assert.equal(calls, 4);
+});
+
+test("full queue cancels immediately, frees capacity and preserves a surviving waiter", { timeout: 3_000 }, async () => {
+  const records: RunRecord[] = [];
+  const finish: Array<() => void> = [];
+  let started!: () => void;
+  const saturated = new Promise<void>(resolve => { started = resolve; });
+  let calls = 0;
+  const service = new JudgmentService({ config, store: () => memoryStore(records),
+    provider: () => ({ async evaluate(request) {
+      calls++;
+      if (calls <= 4) await new Promise<void>(resolve => { finish.push(resolve); if (finish.length === 4) started(); });
+      return response(request);
+    } }) });
+  const running = Array.from({ length: 4 }, () => service.run("rank-candidates", input));
+  await saturated;
+  const controllers = Array.from({ length: 64 }, () => new AbortController());
+  const pending = controllers.map(c => service.run("rank-candidates", input, c.signal));
+  const settled = Promise.allSettled(pending); // Handle rejection before delivering cancellation.
+  await assert.rejects(service.run("rank-candidates", input), { code: "RATE_LIMIT" });
+  controllers[0]!.abort(new Error("do not retain this reason"));
+  await assert.rejects(pending[0]!, { code: "TIMEOUT" }); // No running work has completed.
+  const survivor = service.run("rank-candidates", input);
+  for (const controller of controllers) controller.abort();
+  assert.equal((await settled).filter(r => r.status === "rejected").length, 64);
+  assert.equal(calls, 4);
+  for (const resolve of finish) resolve();
+  await Promise.all([...running, survivor]);
+  assert.equal(calls, 5);
+  assert.equal(records.length, 5);
+});
+
+test("active cancellation is forwarded and recorded safely; dependency failure releases capacity", { timeout: 3_000 }, async () => {
+  const controller = new AbortController();
+  const records: RunRecord[] = [];
+  const service = new JudgmentService({ config, store: () => memoryStore(records), provider: () => ({
+    async evaluate(request, signal) {
+      assert.equal(signal, controller.signal);
+      controller.abort(new Error("private-reason"));
+      return response(request); // A provider ignoring cancellation still cannot produce success.
+    },
+  }) });
+  await assert.rejects(service.run("rank-candidates", input, controller.signal), { code: "TIMEOUT" });
+  assert.equal(records[0]?.status, "error");
+  assert.equal(records[0]?.errorCode, "TIMEOUT");
+  assert.equal(JSON.stringify(records).includes("private-reason"), false);
+  let fail = true;
+  const recover = new JudgmentService({ config, store: () => memoryStore([]), provider: () => {
+    if (fail) throw new JevError("AUTHENTICATION", "Missing key.");
+    return { async evaluate(request) { return response(request); } };
+  } });
+  await Promise.all(Array.from({ length: 8 }, () => assert.rejects(recover.run("rank-candidates", input), { code: "AUTHENTICATION" })));
+  fail = false;
+  await Promise.all(Array.from({ length: 5 }, () => recover.run("rank-candidates", input)));
+});

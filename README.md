@@ -2,7 +2,7 @@
 
 为编码代理提供 TypeSafe Jev 判断能力的本地工具骨架。TypeScript 模块化单体，共用版本化规则和执行服务，提供 CLI 与 stdio MCP。Jev 提供判断和概率，本地代码负责排序、阈值、错误处理和存储。
 
-当前是可续开发的基础版本：三个规则、官方 SDK 适配、超时与 SDK 重试、响应校验、SQLite 元数据存储及离线测试。真实模型效果、阈值校准、评测运行器、控制台和输入采集适配器仍需后续开发，详见 [CLOUD_TASK.md](CLOUD_TASK.md)。
+当前提供三个规则、官方 SDK 适配、超时与 SDK 重试、响应校验、SQLite 元数据存储、JSON/JSONL 评测闭环及模型/规则版本对比。评测器已通过固定合成预测验证；真实模型效果与阈值校准尚未验证。控制台和输入采集适配器仍属后续开发，详见 [CLOUD_TASK.md](CLOUD_TASK.md)。
 
 本地交付证据与未覆盖项见 [docs/validation.md](docs/validation.md)。仓库提供22.16/24的离线 CI 配置，尚未在远端运行。
 
@@ -33,7 +33,16 @@ node dist/cli.js run rank-candidates --input - --dry-run < examples/rank-candida
 
 # 查看本机调用元数据
 node dist/cli.js history --limit 20
+
+# 无预测时只校验评测样本和计划，不伪造准确率
+node dist/cli.js evaluate --suite examples/evaluation/triage.jsonl
+
+# 固定合成预测，只验证评测器；可选 --save 保存聚合元数据
+node dist/cli.js evaluate --suite examples/evaluation/triage.jsonl --predictions examples/evaluation/triage-predictions-a.json
+node dist/cli.js evaluations --limit 20
 ```
+
+完整样本格式、指标分母、版本对比及显式 live 上限见 [评测说明](docs/evaluation.md)。默认评测与合成预测评分无需 key 或数据库；评测指标保留错误接受、unknown/review 和调用失败，零分母为 null。真实评测必须显式选择 `--live --max-samples N --max-requests N`，请求预算包含 SDK 最坏情况下的重试，不代表费用限额。
 
 真实调用需要在服务进程环境中安全配置 `TYPESAFE_API_KEY`，然后去掉 `--dry-run`。不要把 key 放进命令参数、对话、配置示例或版本库。`.env.example` 仅供参考；程序不会自动加载 `.env`。`doctor` 只报告 key 是否存在，不验证有效性。
 
@@ -54,6 +63,8 @@ node dist/cli.js history --limit 20
 工具列表包含三个专用工具，以及 `jev_run_recipe`。后者只能运行注册规则，支持 `dryRun: true`，不接受任意模型问题或任意文件路径。
 
 配置样例在 [examples/codex-config.toml](examples/codex-config.toml)。将其中的示例路径替换为实际绝对路径，并确保启动 Codex 的环境中存在需要转发的变量。这里只提供配置文件示例，不修改全局 Codex 设置。配置字段依据 [Codex MCP 官方文档](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)。
+
+项目级 [Codex 使用 skill](.agents/skills/jev/SKILL.md) 说明何时调用工具、最少材料、授权、review/unknown 处理与工具不可用时的降级方式；不安装全局 skill 或覆盖用户配置。
 
 例如，先通过 `jev_run_recipe` 调用：
 
@@ -82,9 +93,9 @@ node dist/cli.js history --limit 20
 | `JEV_TIMEOUT_MS` | `30000` | 单次评估的总时限，包含 SDK 重试等待，范围 100..120000 |
 | `JEV_MAX_RETRIES` | `1` | SDK 额外尝试次数，范围 0..3；应用层不再重试 |
 
-执行服务最多并行 4 个评估，等待队列最多 64 项。总时限从评估开始计算，不包含本地排队时间。上游失败与低置信判断使用不同结果路径，存储失败也会显式返回。
+执行服务最多并行 4 个评估，等待队列最多 64 项。排队取消立即移除等待项，不创建依赖或发出推理请求；在途取消传递给 SDK。总时限从评估开始计算，不包含本地排队时间。上游失败与低置信判断使用不同结果路径，存储失败也会显式返回。
 
-SQLite schema v1 仅有调用元数据和评测摘要表。没有 state、代码、日志、key 或原始判断列；不缓存结果。评测表目前提供存储接口，尚未接评测运行器。schema 版本不支持时拒绝打开，不自动破坏旧数据。
+SQLite schema v2 保存调用元数据，以及含套件/规则/请求与实际模型版本、分项指标和来源的评测聚合报告。通过事务迁移保留 v1 数据，不为旧摘要伪造缺失维度。没有 state、代码、日志、key 或原始判断列；不缓存结果。并发初始化/迁移在写锁内复查版本，不支持的更新 schema 会被拒绝打开。
 
 ## 代码结构
 
@@ -94,11 +105,13 @@ src/
   recipes/     版本化输入、问题、阈值和结果映射
   providers/   TypeSafe 官方 SDK、响应校验
   storage/     SQLite 元数据适配器
+  evaluation/  标注样本、分项指标、运行器和报告对比
   application.ts 依赖组装（无 key 时仍可列工具和 dry run）
   cli.ts       CLI 入口
   mcp.ts       stdio MCP 入口
 test/          离线契约、规则、持久化和入口验证
 examples/      合成样例与配置示例
+.agents/skills/jev/  项目级 Codex 使用说明
 docs/          架构和交付记录
 ```
 

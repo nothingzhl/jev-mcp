@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "suite": "synthetic-rank",
+  "suiteVersion": "1.0.0",
+  "recipeId": "rank-candidates",
+  "recipeVersion": "1.0.0",
+  "samples": [
+    {
+      "id": "two-key-items",
+      "input": {
+        "task": "Find the explicit offline check instructions and their package script.",
+        "candidates": [
+          { "id": "guide", "title": "Guide", "content": "Run npm run check for offline validation." },
+          { "id": "script", "title": "Package script", "content": "check runs typecheck, test and build." },
+          { "id": "unrelated", "title": "Colors", "content": "The example theme uses blue." }
+        ]
+      },
+      "expected": { "keyIds": ["guide", "script"], "topK": 1 }
+    },
+    {
+      "id": "stable-tie",
+      "input": {
+        "task": "Locate the actual token validator.",
+        "candidates": [
+          { "id": "caller", "title": "Caller", "content": "validateToken(token);" },
+          { "id": "validator", "title": "Validator", "content": "function validateToken(token) { return token.length > 0; }" }
+        ]
+      },
+      "expected": { "keyIds": ["validator"], "topK": 1 }
+    }
+  ]
+}

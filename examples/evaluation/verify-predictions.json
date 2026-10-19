@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "source": "synthetic",
+  "suiteDigest": "a076f6ef63fc2979ffba5dba59f0ff08d7785e30c595d1bcabb6bf4c08cebf02",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "synthetic-a",
+  "predictions": [
+    {
+      "sampleId": "three-verdicts",
+      "response": {
+        "model": "synthetic-a-fixed",
+        "requestId": null,
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null
+        },
+        "answers": {
+          "claim_0": {
+            "type": "choice",
+            "choice": "supported",
+            "confidence": 0.95,
+            "probabilities": {
+              "supported": 1,
+              "contradicted": 0,
+              "insufficient": 0
+            }
+          },
+          "claim_1": {
+            "type": "choice",
+            "choice": "supported",
+            "confidence": 0.95,
+            "probabilities": {
+              "supported": 1,
+              "contradicted": 0,
+              "insufficient": 0
+            }
+          },
+          "claim_2": {
+            "type": "choice",
+            "choice": "insufficient",
+            "confidence": 0.95,
+            "probabilities": {
+              "supported": 0,
+              "contradicted": 0,
+              "insufficient": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "sampleId": "empty-evidence",
+      "response": {
+        "model": "synthetic-a-fixed",
+        "requestId": null,
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null
+        },
+        "answers": {
+          "claim_0": {
+            "type": "choice",
+            "choice": "supported",
+            "confidence": 0.99,
+            "probabilities": {
+              "supported": 1,
+              "contradicted": 0,
+              "insufficient": 0
+            }
+          }
+        }
+      }
+    }
+  ]
+}

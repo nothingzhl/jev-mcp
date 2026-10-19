@@ -41,7 +41,7 @@ export const questions: Record<string, Question> = {
   },
 };
 
-function interpret(inputValue: unknown, response: EvaluationResponse) {
+export function interpret(inputValue: unknown, response: EvaluationResponse) {
   parseInput(inputSchema, inputValue, id);
   const categoryJudgment = answerOf(response, "category", "choice");
   const evidenceJudgment = answerOf(response, "evidence", "noul");

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "source": "synthetic",
+  "suiteDigest": "9e8c5f7c64629d24f4e0834abc5ba19d7518fa1f7eb90badd8b3356780279237",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "synthetic-a",
+  "predictions": [
+    {
+      "sampleId": "runtime",
+      "response": {
+        "model": "synthetic-a-fixed",
+        "requestId": null,
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null
+        },
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "environment",
+            "confidence": 0.95,
+            "probabilities": {
+              "regression": 0,
+              "environment": 1,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 0
+            }
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.95
+          }
+        }
+      }
+    },
+    {
+      "sampleId": "package",
+      "response": {
+        "model": "synthetic-a-fixed",
+        "requestId": null,
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null
+        },
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "regression",
+            "confidence": 0.5,
+            "probabilities": {
+              "regression": 1,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 0
+            }
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.95
+          }
+        }
+      }
+    },
+    {
+      "sampleId": "ambiguous",
+      "response": {
+        "model": "synthetic-a-fixed",
+        "requestId": null,
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null
+        },
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "dependency",
+            "confidence": 0.95,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 1,
+              "flaky": 0,
+              "unknown": 0
+            }
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.95
+          }
+        }
+      }
+    }
+  ]
+}

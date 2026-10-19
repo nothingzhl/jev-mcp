@@ -39,7 +39,7 @@ function questions(input: Input): Record<string, Question> {
   }]));
 }
 
-function interpret(inputValue: unknown, response: EvaluationResponse) {
+export function interpret(inputValue: unknown, response: EvaluationResponse) {
   const input = parseInput(inputSchema, inputValue, id);
   return {
     recipeId: id,

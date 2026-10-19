@@ -1,0 +1,4 @@
+{"schemaVersion":1,"suite":"synthetic-triage","suiteVersion":"1.0.0","recipeId":"triage-failure","recipeVersion":"1.0.0"}
+{"id":"runtime","input":{"command":"node example.js","log":"node: command not found"},"expected":{"category":"environment"}}
+{"id":"package","input":{"command":"node example.js","log":"Error: Cannot find package synthetic-missing-package"},"expected":{"category":"dependency"}}
+{"id":"ambiguous","input":{"command":"run-check","log":"Check failed; no other output was collected."},"expected":{"category":"unknown"}}

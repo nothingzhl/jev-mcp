@@ -19,7 +19,7 @@ export interface RunResult {
 
 export class JudgmentService {
   private active = 0;
-  private readonly queue: Array<() => void> = [];
+  private readonly queue: Array<{ enter: () => void; cancel: () => void }> = [];
 
   constructor(private readonly options: {
     config: Config;
@@ -44,24 +44,27 @@ export class JudgmentService {
   }
 
   async run(recipeId: string, input: unknown, signal?: AbortSignal): Promise<RunResult> {
+    if (signal?.aborted) throw this.cancelled();
     const plan = this.plan(recipeId, input);
-    // Resolve local dependencies before spending any API tokens.
-    const store = this.options.store();
-    const provider = this.options.provider();
-    await this.acquire();
-    const started = performance.now();
-    const record: RunRecord = {
-      id: randomUUID(), recipeId: plan.recipeId, recipeVersion: plan.recipeVersion,
-      requestedModel: plan.request.model, actualModel: null,
-      startedAt: new Date().toISOString(), durationMs: 0, status: "error",
-      questionCount: Object.keys(plan.request.questions).length,
-      inputTokens: null, outputTokens: null, requestId: null, errorCode: null,
-    };
+    await this.acquire(signal);
     try {
+      // Cancelled/overflowed waiters never construct local dependencies or call the API.
+      if (signal?.aborted) throw this.cancelled();
+      const provider = this.options.provider();
+      const store = this.options.store();
+      const started = performance.now();
+      const record: RunRecord = {
+        id: randomUUID(), recipeId: plan.recipeId, recipeVersion: plan.recipeVersion,
+        requestedModel: plan.request.model, actualModel: null,
+        startedAt: new Date().toISOString(), durationMs: 0, status: "error",
+        questionCount: Object.keys(plan.request.questions).length,
+        inputTokens: null, outputTokens: null, requestId: null, errorCode: null,
+      };
       let response: EvaluationResponse;
       let result: JsonValue;
       try {
         response = await provider.evaluate(plan.request, signal);
+        if (signal?.aborted) throw this.cancelled();
         record.actualModel = response.model;
         record.inputTokens = response.usage.input_tokens;
         record.outputTokens = response.usage.output_tokens;
@@ -84,15 +87,32 @@ export class JudgmentService {
     }
   }
 
-  private async acquire(): Promise<void> {
+  private cancelled(): JevError {
+    return new JevError("TIMEOUT", "Evaluation was cancelled.");
+  }
+
+  private async acquire(signal?: AbortSignal): Promise<void> {
+    if (signal?.aborted) throw this.cancelled();
     if (this.active < 4) { this.active++; return; }
     if (this.queue.length >= 64) throw new JevError("RATE_LIMIT", "Local inference queue is full; retry later.");
-    await new Promise<void>((resolve) => this.queue.push(resolve));
+    await new Promise<void>((resolve, reject) => {
+      const waiter = {
+        enter: () => { signal?.removeEventListener("abort", waiter.cancel); resolve(); },
+        cancel: () => {
+          const index = this.queue.indexOf(waiter);
+          if (index !== -1) this.queue.splice(index, 1);
+          signal?.removeEventListener("abort", waiter.cancel);
+          reject(this.cancelled());
+        },
+      };
+      this.queue.push(waiter);
+      signal?.addEventListener("abort", waiter.cancel, { once: true });
+    });
   }
 
   private release(): void {
     const next = this.queue.shift();
-    if (next) next();
+    if (next) next.enter();
     else this.active--;
   }
 }

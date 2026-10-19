@@ -40,7 +40,7 @@ function questions(input: Input): Record<string, Question> {
   }]));
 }
 
-function interpret(inputValue: unknown, response: EvaluationResponse) {
+export function interpret(inputValue: unknown, response: EvaluationResponse) {
   const input = parseInput(inputSchema, inputValue, id);
   const candidates = input.candidates.map((candidate, index) => {
     const judgment = answerOf(response, `candidate_${index}`, "score");

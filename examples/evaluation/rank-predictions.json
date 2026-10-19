@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "source": "synthetic",
+  "suiteDigest": "df6e8f882e5157bf03d956fcdef14977795cd4c1d9def9c18c4b499c521bd2c3",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "synthetic-a",
+  "predictions": [
+    {
+      "sampleId": "two-key-items",
+      "response": {
+        "model": "synthetic-a-fixed",
+        "requestId": null,
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null
+        },
+        "answers": {
+          "candidate_0": {
+            "type": "score",
+            "score": 4,
+            "confidence": 0.95,
+            "legend": {
+              "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+              "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+              "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+              "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+              "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+            },
+            "probabilities": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 1
+            }
+          },
+          "candidate_1": {
+            "type": "score",
+            "score": 3,
+            "confidence": 0.6,
+            "legend": {
+              "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+              "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+              "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+              "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+              "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+            },
+            "probabilities": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 1,
+              "4": 0
+            }
+          },
+          "candidate_2": {
+            "type": "score",
+            "score": 0,
+            "confidence": 0.95,
+            "legend": {
+              "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+              "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+              "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+              "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+              "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+            },
+            "probabilities": {
+              "0": 1,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "sampleId": "stable-tie",
+      "response": {
+        "model": "synthetic-a-fixed",
+        "requestId": null,
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null
+        },
+        "answers": {
+          "candidate_0": {
+            "type": "score",
+            "score": 4,
+            "confidence": 0.95,
+            "legend": {
+              "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+              "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+              "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+              "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+              "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+            },
+            "probabilities": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 1
+            }
+          },
+          "candidate_1": {
+            "type": "score",
+            "score": 4,
+            "confidence": 0.95,
+            "legend": {
+              "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+              "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+              "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+              "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+              "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+            },
+            "probabilities": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 1
+            }
+          }
+        }
+      }
+    }
+  ]
+}
