@@ -152,3 +152,28 @@ test("live evaluator enforces worst-case retry budget before any dependency or r
   await assert.rejects(evaluateLive(s, service, { maxSamples: 1, maxRequests: 2, maxRetries: 1, signal: controller.signal }), { code: "TIMEOUT" });
   assert.equal(calls, 3);
 });
+
+test("readiness benchmarks plan offline and cover both safety-negative claims and unknown failures", () => {
+  const root = new URL("../examples/benchmarks/", import.meta.url);
+  const counts: Record<string, number> = {};
+  for (const file of ["rank.json", "verify.json", "triage.jsonl"]) {
+    const benchmark = parseSuiteText(readFileSync(new URL(file, root), "utf8"));
+    const plan = planEvaluation(benchmark, offline());
+    assert.equal(plan.totalSamples, 12);
+    assert.equal(plan.plannedRequests, 12);
+    assert.equal(Object.hasOwn(plan, "metrics"), false);
+    if (benchmark.recipeId === "rank-candidates") {
+      assert.equal(plan.questionCount, 37);
+      assert.equal(benchmark.samples.filter(s => s.expected.keyIds.length === 2).length, 2);
+    } else if (benchmark.recipeId === "verify-claims") {
+      for (const s of benchmark.samples) for (const claim of s.expected.claims) counts[claim.verdict] = (counts[claim.verdict] ?? 0) + 1;
+      assert.deepEqual(counts, { supported: 4, contradicted: 4, insufficient: 4 });
+      assert.equal(plan.questionCount, 12);
+    } else {
+      const categories: Record<string, number> = {};
+      for (const s of benchmark.samples) categories[s.expected.category] = (categories[s.expected.category] ?? 0) + 1;
+      assert.deepEqual(categories, { environment: 2, dependency: 2, regression: 2, flaky: 2, unknown: 4 });
+      assert.equal(plan.questionCount, 24);
+    }
+  }
+});

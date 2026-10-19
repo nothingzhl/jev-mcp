@@ -4,7 +4,7 @@
 
 ## 本轮实际执行
 
-- `npm run check`：strict 类型检查、70 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。
+- `npm run check`：strict 类型检查、71 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含后续新增的 36 个基准案例计划校验。
 - `npm run demo`：成功生成候选排序请求计划，无模型调用、无数据库写入。
 - 文档中的编译版 evaluate 命令：JSON 与 JSONL 计划、三个规则的固定预测评分均通过。
 - 编译版 compare：合成 A/B 报告保留原始分母与 unknown/review；unknownRecall 差值为 1（0/1 → 1/1）。这仅验证对比器。

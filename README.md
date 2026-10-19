@@ -44,6 +44,8 @@ node dist/cli.js evaluations --limit 20
 
 完整样本格式、指标分母、版本对比及显式 live 上限见 [评测说明](docs/evaluation.md)。默认评测与合成预测评分无需 key 或数据库；评测指标保留错误接受、unknown/review 和调用失败，零分母为 null。真实评测必须显式选择 `--live --max-samples N --max-requests N`，请求预算包含 SDK 最坏情况下的重试，不代表费用限额。
 
+另提供每条规则 12 项、共 36 个原创合成标注案例。首次真实验证按 [准备记录](docs/readiness.md) 先执行 3 个受限冒烟请求，再决定是否运行全套；目前仅完成离线计划校验。
+
 真实调用需要在服务进程环境中安全配置 `TYPESAFE_API_KEY`，然后去掉 `--dry-run`。不要把 key 放进命令参数、对话、配置示例或版本库。`.env.example` 仅供参考；程序不会自动加载 `.env`。`doctor` 只报告 key 是否存在，不验证有效性。
 
 真实调用会把显式输入的材料发送到 TypeSafe 并产生 API 用量。服务不扫描仓库、不执行测试命令。CLI 的 dry-run 输出包含显式提供的原始材料，保存或分享前自行检查。
