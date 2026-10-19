@@ -1,0 +1,33 @@
+{
+  "name": "jev-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local MCP and CLI scaffolding for versioned TypeSafe Jev judgments",
+  "type": "module",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "bin": {
+    "jev": "dist/cli.js",
+    "jev-mcp": "dist/mcp.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "check": "npm run typecheck && npm test && npm run build",
+    "dev": "tsx src/cli.ts",
+    "mcp": "tsx src/mcp.ts",
+    "demo": "tsx src/cli.ts run rank-candidates --input examples/rank-candidates.json --dry-run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "@typesafe-ai/sdk": "0.7.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}

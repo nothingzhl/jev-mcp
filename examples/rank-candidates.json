@@ -1,0 +1,7 @@
+{
+  "task": "Choose documentation that explains how to run the project's offline checks.",
+  "candidates": [
+    { "id": "offline-guide", "title": "Offline checks", "content": "Run npm ci followed by npm run check. Tests use synthetic fixtures and do not call the inference API." },
+    { "id": "release-note", "title": "Release notes", "content": "This release improves the local command help and adds example inputs." }
+  ]
+}

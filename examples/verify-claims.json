@@ -1,0 +1,7 @@
+{
+  "claims": [
+    { "id": "test-outcome", "claim": "The synthetic example test suite passed.", "evidence": "Synthetic test runner result: 8 tests, 8 passed, 0 failed, exit code 0." },
+    { "id": "deployment-outcome", "claim": "The application was deployed successfully.", "evidence": "The deployment command was added to a draft checklist. No command execution or deployment result is recorded." },
+    { "id": "no-evidence", "claim": "All production users received the update.", "evidence": "" }
+  ]
+}

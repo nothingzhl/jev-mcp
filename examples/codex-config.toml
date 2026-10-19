@@ -1,0 +1,9 @@
+# Example only. Replace both absolute paths for the target machine.
+# Merge this table into your Codex config; do not overwrite existing tables.
+[mcp_servers.jev]
+command = "node"
+args = ["/absolute/path/to/jev-mcp/dist/mcp.js"]
+cwd = "/absolute/path/to/jev-mcp"
+env_vars = ["TYPESAFE_API_KEY", "JEV_MODEL", "JEV_DB_PATH", "JEV_TIMEOUT_MS", "JEV_MAX_RETRIES"]
+startup_timeout_sec = 20
+tool_timeout_sec = 150

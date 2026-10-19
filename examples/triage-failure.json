@@ -1,0 +1,5 @@
+{
+  "command": "npm run test:example",
+  "log": "Synthetic fixture: test startup failed with MODULE_NOT_FOUND for package 'example-helper'. No test assertions ran. No rerun was performed.",
+  "changeSummary": "Updated a demonstration fixture. This example contains no real project logs or credentials."
+}

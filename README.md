@@ -1,0 +1,105 @@
+# jev-mcp
+
+为编码代理提供 TypeSafe Jev 判断能力的本地工具骨架。TypeScript 模块化单体，共用版本化规则和执行服务，提供 CLI 与 stdio MCP。Jev 提供判断和概率，本地代码负责排序、阈值、错误处理和存储。
+
+当前是可续开发的基础版本：三个规则、官方 SDK 适配、超时与 SDK 重试、响应校验、SQLite 元数据存储及离线测试。真实模型效果、阈值校准、评测运行器、控制台和输入采集适配器仍需后续开发，详见 [CLOUD_TASK.md](CLOUD_TASK.md)。
+
+本地交付证据与未覆盖项见 [docs/validation.md](docs/validation.md)。仓库提供22.16/24的离线 CI 配置，尚未在远端运行。
+
+## 快速运行（无需 key）
+
+使用 Node.js 24；最低版本 22.16。使用 Node 自带的 `node:sqlite`，部分 Node 版本会在 stderr 提示实验性警告。
+
+```sh
+npm ci
+npm run check
+npm run demo
+node dist/cli.js recipes
+node dist/cli.js doctor
+```
+
+`demo` 是 dry run：打印准备发送的请求，不联网、不写数据库，也不返回模拟的模型判断。所有测试使用合成数据和注入的本地传输，测试无需 key，不调用真实 API。安装依赖需要访问 npm registry。
+
+## CLI
+
+```sh
+# 检查三个规则的请求
+node dist/cli.js run rank-candidates --input examples/rank-candidates.json --dry-run
+node dist/cli.js run verify-claims --input examples/verify-claims.json --dry-run
+node dist/cli.js run triage-failure --input examples/triage-failure.json --dry-run
+
+# JSON 也可经 stdin 输入
+node dist/cli.js run rank-candidates --input - --dry-run < examples/rank-candidates.json
+
+# 查看本机调用元数据
+node dist/cli.js history --limit 20
+```
+
+真实调用需要在服务进程环境中安全配置 `TYPESAFE_API_KEY`，然后去掉 `--dry-run`。不要把 key 放进命令参数、对话、配置示例或版本库。`.env.example` 仅供参考；程序不会自动加载 `.env`。`doctor` 只报告 key 是否存在，不验证有效性。
+
+真实调用会把显式输入的材料发送到 TypeSafe 并产生 API 用量。服务不扫描仓库、不执行测试命令。CLI 的 dry-run 输出包含显式提供的原始材料，保存或分享前自行检查。
+
+| 规则 | MCP 工具 | 行为 |
+| --- | --- | --- |
+| `rank-candidates` | `jev_rank_candidates` | 同次请求评价候选，代码稳定排序，保留全部候选和原始判断 |
+| `verify-claims` | `jev_verify_claims` | 检查指定证据是否支持命题，低置信或证据不足返回待复核 |
+| `triage-failure` | `jev_triage_failure` | 结合命令、日志与改动摘要归类，保留 unknown，不执行重试 |
+
+输入字段和长度限制见 `examples/` 与对应 `src/recipes/` 文件。每个规则文件同时保存输入 schema、问题、阈值和结果映射；阈值是初始启发值，尚未通过真实标注样本校准。
+
+## stdio MCP
+
+构建后使用 `node dist/mcp.js` 启动，或使用 `node dist/cli.js serve`。stdout 仅承载 MCP 协议；开发时可用 `npm run mcp`，客户端正式配置应直接启动 Node，避免 npm 输出干扰协议。
+
+工具列表包含三个专用工具，以及 `jev_run_recipe`。后者只能运行注册规则，支持 `dryRun: true`，不接受任意模型问题或任意文件路径。
+
+配置样例在 [examples/codex-config.toml](examples/codex-config.toml)。将其中的示例路径替换为实际绝对路径，并确保启动 Codex 的环境中存在需要转发的变量。这里只提供配置文件示例，不修改全局 Codex 设置。配置字段依据 [Codex MCP 官方文档](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)。
+
+例如，先通过 `jev_run_recipe` 调用：
+
+```json
+{
+  "recipeId": "rank-candidates",
+  "input": {
+    "task": "Find the code that validates a session token",
+    "candidates": [
+      { "id": "a", "title": "session.ts", "content": "export function validateSession(token) { return token.length > 0; }" }
+    ]
+  },
+  "dryRun": true
+}
+```
+
+工具可发现不代表已调用模型。真实结果包含规则版本、请求模型、实际模型、耗时、token 用量、request ID 和原始判断；不提供尚未实现的缓存命中或估算费用。
+
+## 配置与存储
+
+| 环境变量 | 默认值 | 用途 |
+| --- | --- | --- |
+| `TYPESAFE_API_KEY` | 无 | 仅服务端读取的 API 凭证 |
+| `JEV_MODEL` | `jev-latest` | 请求模型；记录同时保存实际返回的模型 |
+| `JEV_DB_PATH` | `.data/jev.sqlite` | SQLite 路径，相对服务进程 cwd 解析；可用 `:memory:` |
+| `JEV_TIMEOUT_MS` | `30000` | 单次评估的总时限，包含 SDK 重试等待，范围 100..120000 |
+| `JEV_MAX_RETRIES` | `1` | SDK 额外尝试次数，范围 0..3；应用层不再重试 |
+
+执行服务最多并行 4 个评估，等待队列最多 64 项。总时限从评估开始计算，不包含本地排队时间。上游失败与低置信判断使用不同结果路径，存储失败也会显式返回。
+
+SQLite schema v1 仅有调用元数据和评测摘要表。没有 state、代码、日志、key 或原始判断列；不缓存结果。评测表目前提供存储接口，尚未接评测运行器。schema 版本不支持时拒绝打开，不自动破坏旧数据。
+
+## 代码结构
+
+```text
+src/
+  core/        判断契约、统一错误与执行服务
+  recipes/     版本化输入、问题、阈值和结果映射
+  providers/   TypeSafe 官方 SDK、响应校验
+  storage/     SQLite 元数据适配器
+  application.ts 依赖组装（无 key 时仍可列工具和 dry run）
+  cli.ts       CLI 入口
+  mcp.ts       stdio MCP 入口
+test/          离线契约、规则、持久化和入口验证
+examples/      合成样例与配置示例
+docs/          架构和交付记录
+```
+
+官方契约参考：[JavaScript SDK](https://docs.typesafe.ai/sdk/javascript)、[HTTP API](https://docs.typesafe.ai/api)、[批量判断](https://docs.typesafe.ai/concepts/how-to-build-with-system-one)、[MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)。请求顶层保持 `model`、`state`、`questions`，规则仅使用 Choice、Score、Noul。
