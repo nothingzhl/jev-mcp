@@ -1,9 +1,10 @@
 # Example only. Replace both absolute paths for the target machine.
 # Merge this table into your Codex config; do not overwrite existing tables.
+# Generate resolved paths with: node dist/cli.js mcp-config
 [mcp_servers.jev]
 command = "node"
 args = ["/absolute/path/to/jev-mcp/dist/mcp.js"]
 cwd = "/absolute/path/to/jev-mcp"
-env_vars = ["TYPESAFE_API_KEY", "JEV_MODEL", "JEV_DB_PATH", "JEV_TIMEOUT_MS", "JEV_MAX_RETRIES"]
+env_vars = ["TYPESAFE_API_KEY", "JEV_MODEL", "JEV_DB_PATH", "JEV_TIMEOUT_MS", "JEV_MAX_RETRIES", "NODE_USE_ENV_PROXY", "HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY", "http_proxy", "https_proxy", "no_proxy", "NODE_EXTRA_CA_CERTS", "SSL_CERT_FILE", "SSL_CERT_DIR", "NODE_USE_SYSTEM_CA"]
 startup_timeout_sec = 20
 tool_timeout_sec = 150

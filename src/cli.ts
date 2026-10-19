@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import { parseArgs } from "node:util";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { isMain } from "./entrypoint.js";
 import { createApplication } from "./application.js";
 import { readConfig } from "./config.js";
@@ -8,11 +10,13 @@ import { readText, parseJson } from "./io.js";
 import { parseSuiteText } from "./evaluation/suite.js";
 import { compareReports } from "./evaluation/report.js";
 import { evaluateLive, evaluatePredictions, parsePredictions, planEvaluation } from "./evaluation/runner.js";
+import { codexMcpConfig } from "./mcp-config.js";
 
 const help = `jev-mcp — local TypeSafe Jev tools
 
 jev recipes
 jev doctor
+jev mcp-config
 jev run <recipe-id> --input <file.json|-> [--dry-run]
 jev history [--limit 20]
 jev evaluate --suite <file.json|file.jsonl|-> [--max-samples N] [--model NAME]
@@ -28,6 +32,7 @@ Available examples: examples/rank-candidates.json, verify-claims.json, triage-fa
 evaluate defaults to validating samples and plans, without quality metrics or a database.
 Prediction files explicitly distinguish synthetic fixtures from recorded responses.
 live requires separate task authorization; max-requests includes worst-case SDK retries.
+mcp-config prints TOML for this checkout; it never writes Codex settings or credential values.
 `;
 
 function positive(value: string | undefined, name: string, max: number): number {
@@ -54,12 +59,16 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
   const { values, positionals } = parsed;
   if (values.help || positionals.length === 0) { process.stdout.write(help); return; }
   const [command, recipeId] = positionals;
-  const commandOptions: Record<string, string[]> = { recipes: [], doctor: [], run: ["input", "dry-run"], history: ["limit"], serve: [],
+  const commandOptions: Record<string, string[]> = { recipes: [], doctor: [], "mcp-config": [], run: ["input", "dry-run"], history: ["limit"], serve: [],
     evaluate: ["suite", "predictions", "live", "max-samples", "max-requests", "model", "save"],
     evaluations: ["limit"], compare: ["left", "right"] };
   if (!command || !Object.hasOwn(commandOptions, command) || positionals.length !== (command === "run" ? 2 : 1)
     || Object.keys(values).some((option) => !commandOptions[command]?.includes(option))) {
     throw new JevError("INVALID_INPUT", "Invalid command or options; run jev --help.");
+  }
+  if (command === "mcp-config") {
+    process.stdout.write(codexMcpConfig(resolve(dirname(fileURLToPath(import.meta.url)), ".."), process.execPath));
+    return;
   }
   if (command === "serve") {
     const { startMcp } = await import("./mcp.js");

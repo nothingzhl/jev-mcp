@@ -16,6 +16,7 @@ npm run check
 npm run demo
 node dist/cli.js recipes
 node dist/cli.js doctor
+node dist/cli.js mcp-config
 ```
 
 `demo` 是 dry run：打印准备发送的请求，不联网、不写数据库，也不返回模拟的模型判断。所有测试使用合成数据和注入的本地传输，测试无需 key，不调用真实 API。安装依赖需要访问 npm registry。
@@ -70,7 +71,7 @@ node dist/cli.js evaluations --limit 20
 
 工具列表包含三个专用工具，以及 `jev_run_recipe`。后者只能运行注册规则，支持 `dryRun: true`，不接受任意模型问题或任意文件路径。
 
-配置样例在 [examples/codex-config.toml](examples/codex-config.toml)。将其中的示例路径替换为实际绝对路径，并确保启动 Codex 的环境中存在需要转发的变量。这里只提供配置文件示例，不修改全局 Codex 设置。配置字段依据 [Codex MCP 官方文档](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)。
+运行 `node dist/cli.js mcp-config` 生成当前机器和检出目录的绝对路径配置，按[首次接入指南](docs/codex-quickstart.md)合并到 Codex 设置。命令只输出 TOML，不写设置或凭证值；代理与 CA 变量通过 env_vars 按名字转发。便携样例仍在 [examples/codex-config.toml](examples/codex-config.toml)，配置字段依据 [Codex MCP 官方文档](https://developers.openai.com/codex/mcp/)。
 
 项目级 [Codex 使用 skill](.agents/skills/jev/SKILL.md) 说明何时调用工具、最少材料、授权、review/unknown 处理与工具不可用时的降级方式；不安装全局 skill 或覆盖用户配置。
 

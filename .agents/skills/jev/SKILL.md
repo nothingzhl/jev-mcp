@@ -53,6 +53,8 @@ dry run 仅校验和返回请求计划，不联网、不写库，不返回模型
 
 MCP 未配置或不可发现时，说明当前能力缺口。若仓库和 Node 24 可用，在仓库目录用 `node dist/cli.js recipes`、`node dist/cli.js doctor`；缺少构建时按 README 安装并构建。用 `node dist/cli.js run <recipe> --input <显式文件> --dry-run` 验证输入；该输出含原始材料，保存或分享前检查。经已有授权的真实 CLI 调用才去掉 --dry-run。
 
+首次接入可运行 `node dist/cli.js mcp-config` 打印本机绝对路径 TOML，按 docs/codex-quickstart.md 核对并合并；输出只有环境变量名，不含凭证值，也不自动注册服务或写入 Codex 设置。当前云路径不一定可由用户桌面客户端访问，应在实际运行服务的目标机器生成。
+
 无 key、上游不可用或任务未授权真实调用时，依据已收集的证据继续人工调查/本地测试，明确标注无法得到 Jev 判断；不要伪造分数或用合成输出冒充真实推理。不要自动安装全局 skill、修改用户 MCP 配置，或把服务暴露为 HTTP。
 
 评测器使用说明在 docs/evaluation.md。固定合成预测仅测试评测代码；需要真实质量数据时应另获评测授权、使用外部标注集，并显式选择 live 与样本/请求上限。
