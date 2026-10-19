@@ -4,6 +4,8 @@
 
 案例依据当前规则预标注，逐例理由及覆盖标签保存在 [annotations.json](../examples/benchmarks/challenge-v1/annotations.json)。尚无独立人工复核，也不是生产分布或统计独立的盲测集；编写时已知规则和第一批结果。没有提供预测文件、模型质量报告或模拟准确率。
 
+已完成[作者逐例复核](challenge-v1-review.md)，保留全部标签，修正分页输入前提与合成重试循环；排序套件升至 1.0.1，规则仍为 1.1.0。证据/归类套件仍为 1.0.0。[真实预算提案](evaluation-plans/challenge-v1.live-budget.json)为关闭重试的最多 36 次 SDK 尝试，当前未授权、未执行。
+
 ## 套件与覆盖
 
 | 套件 | 规则版本 | 样本 / 问题数 | 标签与未来指标分母 |

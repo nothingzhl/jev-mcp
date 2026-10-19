@@ -16,7 +16,7 @@
             "boundary",
             "buggy-source"
           ],
-          "rationale": "predicate 中包含已返回 cursor 的 >= 比较直接解释重复；调用方和接口说明仅提供上下文。"
+          "rationale": "输入明确按 id 升序且包含上一页 cursor 行；predicate 的 >= 会让该行再次进入页面，调用方和接口说明仅提供上下文。"
         },
         {
           "sampleId": "tenant-cache-contract-and-key",
@@ -80,7 +80,7 @@
             "multi-component",
             "proposed-vs-implemented"
           ],
-          "rationale": "retry 调用每次 attempt，attempt 内新建 timeout；未来设计不能替代实际代码。"
+          "rationale": "retry 捕获失败并最多尝试三次、成功即停止；每次调用的 attempt 内新建 timeout，两处共同说明每次重试获得新时限。"
         },
         {
           "sampleId": "short-fragment-versus-long-overview",

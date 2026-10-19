@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "dataset": "challenge-v1",
+  "status": "proposed-not-authorized",
+  "approved": false,
+  "requestedModel": "jev-latest",
+  "sdkExtraRetries": 0,
+  "timeoutMs": 30000,
+  "maxSdkAttemptsTotal": 36,
+  "extraSmokeRequests": 0,
+  "newAttemptsMade": 0,
+  "privateInputIncluded": false,
+  "feeLimit": null,
+  "suites": [
+    {
+      "file": "examples/benchmarks/challenge-v1/rank.json",
+      "suite": "challenge-v1-rank",
+      "suiteVersion": "1.0.1",
+      "recipeId": "rank-candidates",
+      "recipeVersion": "1.1.0",
+      "suiteDigest": "2df55217117e2013bdb009f6b3d2ae94939c4093da1cc143cbaca76f0d08c4af",
+      "maxSamples": 12,
+      "maxRequests": 12
+    },
+    {
+      "file": "examples/benchmarks/challenge-v1/verify.json",
+      "suite": "challenge-v1-verify",
+      "suiteVersion": "1.0.0",
+      "recipeId": "verify-claims",
+      "recipeVersion": "1.0.0",
+      "suiteDigest": "23df80530c0f9a9e62fca9ef1e3cb91913f886e448ea7286f9919634b348c276",
+      "maxSamples": 12,
+      "maxRequests": 12
+    },
+    {
+      "file": "examples/benchmarks/challenge-v1/triage.jsonl",
+      "suite": "challenge-v1-triage",
+      "suiteVersion": "1.0.0",
+      "recipeId": "triage-failure",
+      "recipeVersion": "1.0.0",
+      "suiteDigest": "8f8a65f8aa5fcdd1d4a87134481ac45f03c97f0782a9865f61f892d184c60b49",
+      "maxSamples": 12,
+      "maxRequests": 12
+    }
+  ],
+  "failurePolicy": "Keep failed samples and their denominators. Pause before the next suite if the current CLI exits nonzero. Do not repeat attempted cases or add smoke/debug requests without a new budget."
+}

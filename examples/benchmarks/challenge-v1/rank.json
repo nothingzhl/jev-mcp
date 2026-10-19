@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "suite": "challenge-v1-rank",
-  "suiteVersion": "1.0.0",
+  "suiteVersion": "1.0.1",
   "recipeId": "rank-candidates",
   "recipeVersion": "1.1.0",
   "samples": [
     {
       "id": "cursor-inclusive-boundary",
       "input": {
-        "task": "Find the predicate that repeats the last item from the previous page when fetching the next page. The last cursor is the previously returned row id.",
+        "task": "Find the predicate that repeats the last item from the previous page when fetching the next page. The last cursor is the previously returned row id. The input rows are sorted ascending by id and include the previously returned row.",
         "candidates": [
           {
             "id": "guide",
@@ -287,7 +287,7 @@
           {
             "id": "retry",
             "title": "Attempt loop",
-            "content": "for (let attempt = 0; attempt < 3; attempt++) { await performAttempt(); }"
+            "content": "for (let attempt = 0; attempt < 3; attempt++) { try { await performAttempt(); break; } catch (error) { if (attempt === 2) throw error; } }"
           },
           {
             "id": "docs",
