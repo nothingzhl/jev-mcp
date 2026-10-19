@@ -4,6 +4,36 @@
 
 ## 生成配置
 
+在包含当前代码的源码目录中，一条命令即可安装锁定依赖、构建并注册到 Codex 用户配置：
+
+```sh
+npm run setup:codex
+```
+
+默认目标是 `~/.codex/config.toml`；若启动环境已有 CODEX_HOME，则使用该目录的 config.toml。预览步骤用 `npm run setup:codex -- --dry-run`，预览不安装依赖、不构建、不写配置。指定受信任项目配置可用 `npm run setup:codex -- --config /absolute/project/.codex/config.toml`。
+
+安装命令仅新增 Jev 表，保留原文件字节、注释、其他服务和权限。完全相同的注册再次执行会返回 already-installed，不重写配置；同名配置不同、TOML 无效、符号链接或已有安装锁时会报错并保留原文件，不自动覆盖。多个 Jev 安装器通过文件锁协调；安装期间避免同时用其他编辑器修改同一文件。异常中断可能留下 `.jev.lock`，确认没有安装进程后再手动清理。注册成功后重新加载 Codex 并进行下文 dry run。
+
+已构建目录或已安装的包可直接用 `jev install-codex`（源码目录中用 `node dist/cli.js install-codex`）。支持相同的 `--config` 和 `--dry-run`，不需要 Codex CLI 或 API key，也不会发模型请求。服务 cwd 设为配置所在目录，默认数据库因此位于该目录的 `.data/jev.sqlite`；已有 JEV_DB_PATH 仍可覆盖，避免把元数据库写入只读安装目录。
+
+## 本地安装包
+
+当前项目尚未发布到 npm。源码目录可生成只包含编译产物和接入说明的本地包：
+
+```sh
+npm run pack:local
+```
+
+产物在 `.data/jev-mcp-0.1.0.tgz`，不包含密钥、SQLite、测试或评测响应。将文件放到目标机器后，可直接安装运行注册命令：
+
+```sh
+npm exec --yes --package ./jev-mcp-0.1.0.tgz -- jev install-codex
+```
+
+这会下载运行依赖并注册该包的编译入口，无需目标机器安装 TypeScript 或手工构建。npm exec 使用缓存内的安装路径；清理或迁移缓存后需重新注册。原配置指向其他安装位置时会保留并报冲突，应先审查并移除旧 Jev 表，再重新注册。命令不会上传或发布本地包。
+
+## 只打印配置
+
 在仓库根目录运行：
 
 ```sh
@@ -17,7 +47,7 @@ node dist/cli.js mcp-config
 
 将输出的 `[mcp_servers.jev]` 表合并到目标机器的 Codex 配置。官方支持用户级 `~/.codex/config.toml`，或受信任项目的 `.codex/config.toml`。保留其他 server；已有 jev 表时更新对应字段，不重复追加同名表。仓库中的 [便携样例](../examples/codex-config.toml)仍可手工替换路径。
 
-本项目只生成配置，不自动写入这些文件。远程执行器的启动与环境变量来源由客户端另行配置；默认生成的本地 stdio 表使用 Codex 启动环境，不能据此认为桌面客户端已连接云服务。
+`mcp-config` 只生成配置；只有显式运行安装/注册命令才写入选定的 Codex 配置。远程执行器的启动与环境变量来源由客户端另行配置；默认生成的本地 stdio 表使用 Codex 启动环境，不能据此认为桌面客户端已连接云服务。
 
 ## 凭证与云代理
 

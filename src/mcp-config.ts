@@ -7,16 +7,16 @@ export const forwardedEnvironment = [
   "NODE_EXTRA_CA_CERTS", "SSL_CERT_FILE", "SSL_CERT_DIR", "NODE_USE_SYSTEM_CA",
 ] as const;
 
-export function codexMcpConfig(projectRoot: string, nodeCommand: string): string {
+export function codexMcpConfig(projectRoot: string, nodeCommand: string, workingDirectory = projectRoot): string {
   // JSON basic strings/arrays use the same escaping needed by these TOML fields.
   const quote = (value: string) => JSON.stringify(value);
   return [
-    "# Generated for this machine and checkout. Run npm run build before use.",
+    "# Generated for this machine. The referenced compiled MCP entry must exist.",
     "# Merge this table into your Codex config; preserve other servers and existing jev settings.",
     "[mcp_servers.jev]",
     `command = ${quote(nodeCommand)}`,
     `args = ${JSON.stringify([resolve(projectRoot, "dist/mcp.js")])}`,
-    `cwd = ${quote(resolve(projectRoot))}`,
+    `cwd = ${quote(resolve(workingDirectory))}`,
     `env_vars = ${JSON.stringify(forwardedEnvironment)}`,
     "startup_timeout_sec = 20",
     "tool_timeout_sec = 150",

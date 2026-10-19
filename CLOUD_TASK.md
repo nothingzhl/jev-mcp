@@ -17,6 +17,7 @@
 - 用户授权的新一轮 36 次尝试已全部执行，无重试/额外冒烟：35 项可计分、1 项排序概率和校验错误；证据错误接受 0/13、verdict 命中 16/17，归类命中 12/12、unknown 召回 4/4。结果见 docs/evaluation-results/2026-10-19-challenge-v1/README.md，不代表生产质量或阈值校准。
 - 当前 rank-candidates 1.2.0 增加 Score 概率和的有界舍入兼容并强制 review；Choice 保持原校验。两批历史 72 项离线重放均可计分，第二批排序关键项 16/16、topK review 4/16；原报告与数据库不改写，见 docs/evaluation-results/2026-10-19-probability-compatibility/README.md。本次无新增调用，官方精度仍未确认。
 - CLI mcp-config 可生成本机绝对路径的 Codex TOML，仅转发应用、代理与 CA 变量名，不写设置/凭证值；首次接入和 dry run 验收见 docs/codex-quickstart.md。用户客户端注册状态另行确认。
+- 显式安装入口 setup:codex 负责 npm ci、构建和 install-codex 注册；注册使用 TOML 校验、文件锁、原子写入，保留已有配置和注释、重复跳过、冲突拒绝。pack:local 生成编译版本地 tgz，不发布 npm；测试和本任务验收仅写隔离配置，不改用户全局配置。
 
 先执行：
 

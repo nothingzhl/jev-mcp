@@ -17,6 +17,7 @@ const help = `jev-mcp — local TypeSafe Jev tools
 jev recipes
 jev doctor
 jev mcp-config
+jev install-codex [--config <config.toml>] [--dry-run]
 jev run <recipe-id> --input <file.json|-> [--dry-run]
 jev history [--limit 20]
 jev evaluate --suite <file.json|file.jsonl|-> [--max-samples N] [--model NAME]
@@ -33,6 +34,7 @@ evaluate defaults to validating samples and plans, without quality metrics or a 
 Prediction files explicitly distinguish synthetic fixtures from recorded responses.
 live requires separate task authorization; max-requests includes worst-case SDK retries.
 mcp-config prints TOML for this checkout; it never writes Codex settings or credential values.
+install-codex explicitly registers Jev; existing conflicting settings are preserved.
 `;
 
 function positive(value: string | undefined, name: string, max: number): number {
@@ -49,6 +51,7 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
       suite: { type: "string" }, predictions: { type: "string" }, live: { type: "boolean" },
       "max-samples": { type: "string" }, "max-requests": { type: "string" },
       model: { type: "string" }, save: { type: "boolean" }, left: { type: "string" }, right: { type: "string" },
+      config: { type: "string" },
     } });
   let parsed: ReturnType<typeof parse>;
   try {
@@ -60,6 +63,7 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
   if (values.help || positionals.length === 0) { process.stdout.write(help); return; }
   const [command, recipeId] = positionals;
   const commandOptions: Record<string, string[]> = { recipes: [], doctor: [], "mcp-config": [], run: ["input", "dry-run"], history: ["limit"], serve: [],
+    "install-codex": ["config", "dry-run"],
     evaluate: ["suite", "predictions", "live", "max-samples", "max-requests", "model", "save"],
     evaluations: ["limit"], compare: ["left", "right"] };
   if (!command || !Object.hasOwn(commandOptions, command) || positionals.length !== (command === "run" ? 2 : 1)
@@ -68,6 +72,14 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
   }
   if (command === "mcp-config") {
     process.stdout.write(codexMcpConfig(resolve(dirname(fileURLToPath(import.meta.url)), ".."), process.execPath));
+    return;
+  }
+  if (command === "install-codex") {
+    const { codexConfigPath, installCodex } = await import("./codex-install.js");
+    const output = await installCodex({ configPath: codexConfigPath(values.config),
+      projectRoot: resolve(dirname(fileURLToPath(import.meta.url)), ".."), nodeCommand: process.execPath,
+      ...(values["dry-run"] ? { dryRun: true } : {}) });
+    process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
     return;
   }
   if (command === "serve") {

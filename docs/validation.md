@@ -4,17 +4,20 @@
 
 ## 本轮实际执行
 
-- `TYPESAFE_API_KEY= npm run check`：strict 类型检查、84 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含两批 72 项历史响应重放、Score 浮点边界、分数/概率和的有界舍入兼容，以及新 MCP 配置生成命令的无 key、错误参数、路径和环境变量边界。
+- `TYPESAFE_API_KEY= npm run check`：strict 类型检查、90 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含两批 72 项响应重放、Score 舍入边界、MCP 配置生成，以及安装器的配置保留、冲突/大小/UTF-8/符号链接、重复执行、六进程争用和安装包装器边界。
 - `npm run demo`：成功生成候选排序请求计划，无模型调用、无数据库写入。
 - 文档中的编译版 evaluate 命令：JSON 与 JSONL 计划、三个规则的固定预测评分均通过。
 - 编译版 compare：合成 A/B 报告保留原始分母与 unknown/review；unknownRecall 差值为 1（0/1 → 1/1）。这仅验证对比器。
 - 编译版 CLI/MCP：直接启动产物，检查工具列表与三个规则 dry run；检查 CLI doctor、SQLite 内存 history 与两个 stdio 启动入口。
-- `git diff --check` 通过；未改变依赖声明、锁文件或用户的全局配置。
+- `git diff --check` 通过；安装器新增并锁定 smol-toml 1.9.1，用于真实 TOML 解析及候选配置验证；没有修改用户全局配置。
 - 第二批 challenge-v1：三个编译版 CLI 无 key 的计划输出与保存快照完全一致；共 36 个样本、89 个问题、36 个逻辑请求。新旧样本 ID/完整输入无重复，标注一一对应，证据负例 13 条，unknown 标签 4 项；请求 state 不包含标签或标注理由。准备阶段未调用模型，详见 [准备说明](challenge-v1.md)。
 - 第二批作者复核后重跑全部检查与三个 CLI 计划仍通过。排序套件 1.0.1 明确分页输入前提、修正失败即退出的合成重试循环；本地注入片段验证成功即停、失败后重试、耗尽抛错及 cursor 重复。全部标签保留，完整记录和调用前预算提案见 [复核记录](challenge-v1-review.md)；作者复核阶段没有独立人工复核或新增 API 调用。
 - 获新预算授权后，编译版 CLI 完成第二批 36 次真实请求，全部 HTTP 200，应用层 35 成功/1 INVALID_RESPONSE。重开 SQLite 的 36 条元数据及 3 份报告均核对；离线捕获重放的所有指标/错误与原始 live 报告一致。没有修改本轮规则、阈值、标签或重发失败案例，详见 [实测结果](evaluation-results/2026-10-19-challenge-v1/README.md)。
 - 后续排序规则 1.2.0 在 Score 概率和超出原容差时要求归一化/期望的联合舍入可行性，强制 probability_rounding/review；原始概率不重写。两批共 72 项历史响应离线可计分，第二批排序关键项 16/16、topK review 4/16；第一批及两批证据/归类指标不变。原始实测报告和数据库仍保留旧错误，本次新增调用为 0，见 [兼容重放](evaluation-results/2026-10-19-probability-compatibility/README.md)。
 - Codex 接入：编译版 mcp-config 生成 TOML，经 Python tomllib 实际解析并核对 Node/入口/cwd 路径存在。用解析后的命令启动真实编译版 stdio MCP，官方 Client 列出 4 个工具，并分别完成三个规则 dry run（2/3/2 个问题）；清空 key 的真实工具请求返回 AUTHENTICATION，未创建 SQLite、无模型调用、无协议错误或 stderr 输出。未修改或注册用户的 Codex 配置；配置生成测试还覆盖任意 cwd、路径空格/引号、拒绝多余参数、凭证/代理值不进输出，见 [首次接入指南](codex-quickstart.md)。
+- 一键安装：以隔离 config.toml 实际执行两次 `npm --cache /tmp/jev-npm-cache run setup:codex -- --config <隔离路径>`，均完成 npm ci 与构建；第一次 installed，第二次 already-installed，配置字节及 mtime 不变。缓存使用 /tmp 是因为本云环境默认 npm 缓存目录不可写，没有改 HOME 或 npm 全局设置。
+- 本地分发：pack:local 产物 `.data/jev-mcp-0.1.0.tgz` 共 73 个白名单文件，SHA256 为 `d1e3d9359791aaea9477a1620ddc267249283e3b8daf06b20f89652bd8047a8f`；不包含 .data、SQLite、源码测试或评测捕获。将最终包复制到独立路径后，用实际 npm exec 安装并注册到另一隔离配置；其他 server 原字节保留。官方 MCP Client 从包内编译入口发现 4 个工具，完成三个 dry run 和缺 key 错误检查，未创建 DB、无协议错误、无模型调用。Codex CLI 使用仅命令行覆盖的 mcp get 验证该表可解析，未写用户的 Codex 设置。
+- 环境草稿：尝试保存 NPM_CONFIG_CACHE=/tmp/jev-npm-cache 的建议时，自动审批返回 ASB rejected，未给出具体原因、未确认草稿保存。本轮使用上述已验证的命令级缓存参数完成安装，未重复尝试被拒绝的变更。
 
 ## 评测与存储覆盖
 

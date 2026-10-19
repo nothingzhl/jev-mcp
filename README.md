@@ -67,11 +67,15 @@ node dist/cli.js evaluations --limit 20
 
 ## stdio MCP
 
+在源码目录执行 `npm run setup:codex`，即可安装依赖、构建并注册到 Codex 用户配置；用 `-- --dry-run` 预览，或 `-- --config /absolute/path/config.toml` 指定目标。已有相同注册会跳过，冲突配置会保留并报错。命令不保存 key 值，也不调用模型。
+
+也可用 `npm run pack:local` 生成 `.data/jev-mcp-0.1.0.tgz`，复制到目标机器后执行 `npm exec --yes --package ./jev-mcp-0.1.0.tgz -- jev install-codex`。这是本地安装包，尚未发布到 npm；完整选项见[接入指南](docs/codex-quickstart.md)。
+
 构建后使用 `node dist/mcp.js` 启动，或使用 `node dist/cli.js serve`。stdout 仅承载 MCP 协议；开发时可用 `npm run mcp`，客户端正式配置应直接启动 Node，避免 npm 输出干扰协议。
 
 工具列表包含三个专用工具，以及 `jev_run_recipe`。后者只能运行注册规则，支持 `dryRun: true`，不接受任意模型问题或任意文件路径。
 
-运行 `node dist/cli.js mcp-config` 生成当前机器和检出目录的绝对路径配置，按[首次接入指南](docs/codex-quickstart.md)合并到 Codex 设置。命令只输出 TOML，不写设置或凭证值；代理与 CA 变量通过 env_vars 按名字转发。便携样例仍在 [examples/codex-config.toml](examples/codex-config.toml)，配置字段依据 [Codex MCP 官方文档](https://developers.openai.com/codex/mcp/)。
+仅预览配置可运行 `node dist/cli.js mcp-config`，输出当前机器和检出目录的绝对路径 TOML，按[首次接入指南](docs/codex-quickstart.md)手工合并。该命令不写设置或凭证值；代理与 CA 变量通过 env_vars 按名字转发。便携样例仍在 [examples/codex-config.toml](examples/codex-config.toml)，配置字段依据 [Codex MCP 官方文档](https://developers.openai.com/codex/mcp/)。
 
 项目级 [Codex 使用 skill](.agents/skills/jev/SKILL.md) 说明何时调用工具、最少材料、授权、review/unknown 处理与工具不可用时的降级方式；不安装全局 skill 或覆盖用户配置。
 
