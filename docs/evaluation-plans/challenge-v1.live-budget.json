@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "dataset": "challenge-v1",
-  "status": "proposed-not-authorized",
-  "approved": false,
+  "status": "executed",
+  "approved": true,
   "requestedModel": "jev-latest",
   "sdkExtraRetries": 0,
   "timeoutMs": 30000,
   "maxSdkAttemptsTotal": 36,
   "extraSmokeRequests": 0,
-  "newAttemptsMade": 0,
+  "newAttemptsMade": 36,
   "privateInputIncluded": false,
   "feeLimit": null,
   "suites": [
@@ -43,5 +43,10 @@
       "maxRequests": 12
     }
   ],
-  "failurePolicy": "Keep failed samples and their denominators. Pause before the next suite if the current CLI exits nonzero. Do not repeat attempted cases or add smoke/debug requests without a new budget."
+  "failurePolicy": "Keep failed samples and their denominators. Pause before the next suite if the current CLI exits nonzero. Do not repeat attempted cases or add smoke/debug requests without a new budget.",
+  "authorization": {
+    "source": "User approved the explicitly proposed maximum of 36 new calls, no retries and no extra smoke calls.",
+    "date": "2026-10-19"
+  },
+  "results": "docs/evaluation-results/2026-10-19-challenge-v1/README.md"
 }

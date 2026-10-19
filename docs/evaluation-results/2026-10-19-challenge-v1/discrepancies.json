@@ -1,0 +1,21 @@
+[
+  {
+    "sampleId": "copy-started-not-completed",
+    "claimId": "copy",
+    "expected": "insufficient",
+    "actual": "contradicted",
+    "status": "review",
+    "canAutoAccept": false,
+    "confidence": 0.37,
+    "judgment": {
+      "type": "choice",
+      "choice": "contradicted",
+      "probabilities": {
+        "supported": 0,
+        "contradicted": 0.58,
+        "insufficient": 0.42
+      },
+      "confidence": 0.37
+    }
+  }
+]

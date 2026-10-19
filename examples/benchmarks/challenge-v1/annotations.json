@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "dataset": "challenge-v1",
   "createdAt": "2026-10-19",
-  "status": "prelabeled-not-model-evaluated",
+  "status": "prelabeled-before-model-evaluation",
   "origin": "New synthetic cases authored after Score compatibility repair; no private inputs, no reused model responses.",
   "independentHumanReview": false,
   "suites": [

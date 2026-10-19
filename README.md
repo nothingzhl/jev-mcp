@@ -48,7 +48,7 @@ node dist/cli.js evaluations --limit 20
 
 随后加入保守的 Score 舍入兼容检查，排序规则更新为 1.1.0：[离线重放](docs/evaluation-results/2026-10-19-score-compatibility/README.md) 可计分 36/36，新增兼容结果强制待复核，没有新增调用。此策略是假设两位小数舍入的本地兼容边界，官方尚未保证该精度；不能据此把待复核结果自动通过。
 
-[第二批合成挑战集](docs/challenge-v1.md)已准备 36 个新案例、预标注理由和离线请求计划，包含 17 条证据声明及 48 个排序候选。当前未调用模型、未产生质量指标；尚无独立人工复核。
+[第二批合成挑战集](docs/challenge-v1.md)包含 36 个新案例、17 条证据声明及 48 个排序候选。[实测](docs/evaluation-results/2026-10-19-challenge-v1/README.md)完成 36 次调用、35 项可计分；证据错误接受 0/13，归类命中 12/12，排序保留 1 项概率和校验错误。尚无独立人工复核或生产质量结论。
 
 真实调用需要在服务进程环境中安全配置 `TYPESAFE_API_KEY`，然后去掉 `--dry-run`。不要把 key 放进命令参数、对话、配置示例或版本库。`.env.example` 仅供参考；程序不会自动加载 `.env`。`doctor` 只报告 key 是否存在，不验证有效性。
 

@@ -1,0 +1,1854 @@
+{
+  "schemaVersion": 1,
+  "source": "live-http-capture",
+  "responseFieldsAllowlisted": true,
+  "suites": [
+    {
+      "file": "examples/benchmarks/challenge-v1/rank.json",
+      "suite": "challenge-v1-rank",
+      "suiteVersion": "1.0.1",
+      "suiteDigest": "2df55217117e2013bdb009f6b3d2ae94939c4093da1cc143cbaca76f0d08c4af",
+      "recipeId": "rank-candidates",
+      "recipeVersion": "1.1.0",
+      "requestedModel": "jev-latest",
+      "samples": [
+        {
+          "sampleId": "cursor-inclusive-boundary",
+          "attempt": 1,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 1.21,
+                "confidence": 0.68,
+                "probabilities": {
+                  "0": 0.09,
+                  "1": 0.63,
+                  "2": 0.26,
+                  "3": 0.02,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 0.02,
+                "confidence": 0.99,
+                "probabilities": {
+                  "0": 0.99,
+                  "1": 0.01,
+                  "2": 0,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 3.93,
+                "confidence": 0.96,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.05,
+                  "4": 0.95
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 1.75,
+                "confidence": 0.56,
+                "probabilities": {
+                  "0": 0.02,
+                  "1": 0.35,
+                  "2": 0.5,
+                  "3": 0.12,
+                  "4": 0.01
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1653,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a194847f7ca610e52fd6a0fa58"
+          }
+        },
+        {
+          "sampleId": "tenant-cache-contract-and-key",
+          "attempt": 2,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 3.41,
+                "confidence": 0.51,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.1,
+                  "3": 0.39,
+                  "4": 0.51
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 3.97,
+                "confidence": 0.97,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.03,
+                  "4": 0.97
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 0.72,
+                "confidence": 0.7,
+                "probabilities": {
+                  "0": 0.32,
+                  "1": 0.64,
+                  "2": 0.04,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 0.7,
+                "confidence": 0.72,
+                "probabilities": {
+                  "0": 0.32,
+                  "1": 0.66,
+                  "2": 0.02,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1640,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a195b071fa9be9c35cf4d7ecde"
+          }
+        },
+        {
+          "sampleId": "template-over-generated-copy",
+          "attempt": 3,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 2.88,
+                "confidence": 0.18,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0.04,
+                  "2": 0.33,
+                  "3": 0.32,
+                  "4": 0.31
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 0.8,
+                "confidence": 0.74,
+                "probabilities": {
+                  "0": 0.26,
+                  "1": 0.69,
+                  "2": 0.05,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 0.24,
+                "confidence": 0.81,
+                "probabilities": {
+                  "0": 0.77,
+                  "1": 0.23,
+                  "2": 0,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 3.98,
+                "confidence": 0.99,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.01,
+                  "4": 0.99
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1634,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a196d276c89a3b0703f9c4a9cb"
+          }
+        },
+        {
+          "sampleId": "same-symbol-different-protocol",
+          "attempt": 4,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 0.68,
+                "confidence": 0.57,
+                "probabilities": {
+                  "0": 0.42,
+                  "1": 0.49,
+                  "2": 0.09,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 3.97,
+                "confidence": 0.98,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.02,
+                  "4": 0.98
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 0.65,
+                "confidence": 0.58,
+                "probabilities": {
+                  "0": 0.43,
+                  "1": 0.5,
+                  "2": 0.07,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 0.66,
+                "confidence": 0.68,
+                "probabilities": {
+                  "0": 0.36,
+                  "1": 0.62,
+                  "2": 0.02,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1654,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a197c27c9495f14d6093c47bda"
+          }
+        },
+        {
+          "sampleId": "dedup-id-collision",
+          "attempt": 5,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 2.7,
+                "confidence": 0.17,
+                "probabilities": {
+                  "0": 0.03,
+                  "1": 0.09,
+                  "2": 0.32,
+                  "3": 0.28,
+                  "4": 0.28
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 0.34,
+                "confidence": 0.71,
+                "probabilities": {
+                  "0": 0.66,
+                  "1": 0.33,
+                  "2": 0.01,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 3.94,
+                "confidence": 0.96,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.05,
+                  "4": 0.95
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 1.34,
+                "confidence": 0.55,
+                "probabilities": {
+                  "0": 0.1,
+                  "1": 0.55,
+                  "2": 0.27,
+                  "3": 0.07,
+                  "4": 0.01
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1625,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a199577a4aabaadc60c884776e"
+          }
+        },
+        {
+          "sampleId": "message-injection-versus-send-boundary",
+          "attempt": 6,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 3.99,
+                "confidence": 0.99,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.01,
+                  "4": 0.99
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 0.27,
+                "confidence": 0.78,
+                "probabilities": {
+                  "0": 0.83,
+                  "1": 0.13,
+                  "2": 0.01,
+                  "3": 0.01,
+                  "4": 0.02
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 0.79,
+                "confidence": 0.72,
+                "probabilities": {
+                  "0": 0.27,
+                  "1": 0.66,
+                  "2": 0.07,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 0.46,
+                "confidence": 0.62,
+                "probabilities": {
+                  "0": 0.54,
+                  "1": 0.46,
+                  "2": 0,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1625,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a19a6a76da9bc3bb4692369c57"
+          }
+        },
+        {
+          "sampleId": "cross-process-singleflight-pair",
+          "attempt": 7,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 0.62,
+                "confidence": 0.65,
+                "probabilities": {
+                  "0": 0.4,
+                  "1": 0.58,
+                  "2": 0.02,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 2.3,
+                "confidence": 0.43,
+                "probabilities": {
+                  "0": 0.01,
+                  "1": 0.16,
+                  "2": 0.46,
+                  "3": 0.24,
+                  "4": 0.13
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 3.7,
+                "confidence": 0.76,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.03,
+                  "3": 0.23,
+                  "4": 0.74
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 3.79,
+                "confidence": 0.82,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.02,
+                  "3": 0.18,
+                  "4": 0.8
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1676,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a19b5e7fb89ff9f06b7f866311"
+          }
+        },
+        {
+          "sampleId": "unicode-normalization-key",
+          "attempt": 8,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 0.51,
+                "confidence": 0.57,
+                "probabilities": {
+                  "0": 0.5,
+                  "1": 0.49,
+                  "2": 0.01,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 3.96,
+                "confidence": 0.97,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.03,
+                  "4": 0.97
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 1.65,
+                "confidence": 0.44,
+                "probabilities": {
+                  "0": 0.07,
+                  "1": 0.38,
+                  "2": 0.43,
+                  "3": 0.09,
+                  "4": 0.03
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 0.02,
+                "confidence": 0.98,
+                "probabilities": {
+                  "0": 0.98,
+                  "1": 0.02,
+                  "2": 0,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1688,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a19c7677ceb15bd88211831ab4"
+          }
+        },
+        {
+          "sampleId": "retry-loop-and-budget-clock",
+          "attempt": 9,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 3.11,
+                "confidence": 0.47,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0.01,
+                  "2": 0.25,
+                  "3": 0.37,
+                  "4": 0.37
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 0.8,
+                "confidence": 0.68,
+                "probabilities": {
+                  "0": 0.3,
+                  "1": 0.62,
+                  "2": 0.07,
+                  "3": 0.01,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 0.47,
+                "confidence": 0.62,
+                "probabilities": {
+                  "0": 0.54,
+                  "1": 0.46,
+                  "2": 0,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 3.7,
+                "confidence": 0.75,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.05,
+                  "3": 0.2,
+                  "4": 0.75
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1664,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a19d707acc87157ebdc37604a6"
+          }
+        },
+        {
+          "sampleId": "short-fragment-versus-long-overview",
+          "attempt": 10,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 0.45,
+                "confidence": 0.62,
+                "probabilities": {
+                  "0": 0.56,
+                  "1": 0.43,
+                  "2": 0.01,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 1.08,
+                "confidence": 0.75,
+                "probabilities": {
+                  "0": 0.11,
+                  "1": 0.72,
+                  "2": 0.15,
+                  "3": 0.02,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 3.98,
+                "confidence": 0.99,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.01,
+                  "4": 0.99
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 1.28,
+                "confidence": 0.69,
+                "probabilities": {
+                  "0": 0.04,
+                  "1": 0.65,
+                  "2": 0.29,
+                  "3": 0.02,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1645,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a19eb176a39118988061f3141a"
+          }
+        },
+        {
+          "sampleId": "artifact-upload-versus-preview",
+          "attempt": 11,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 0.82,
+                "confidence": 0.68,
+                "probabilities": {
+                  "0": 0.28,
+                  "1": 0.63,
+                  "2": 0.08,
+                  "3": 0.01,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 1.11,
+                "confidence": 0.62,
+                "probabilities": {
+                  "0": 0.18,
+                  "1": 0.57,
+                  "2": 0.22,
+                  "3": 0.03,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 2.29,
+                "confidence": 0.57,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0.11,
+                  "2": 0.57,
+                  "3": 0.23,
+                  "4": 0.09
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 3.99,
+                "confidence": 0.99,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.01,
+                  "4": 0.99
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1648,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a19f9d79c49bca023138bdbeda"
+          }
+        },
+        {
+          "sampleId": "redaction-before-formatting",
+          "attempt": 12,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "candidate_0": {
+                "type": "score",
+                "score": 3.32,
+                "confidence": 0.44,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.2,
+                  "3": 0.27,
+                  "4": 0.53
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_1": {
+                "type": "score",
+                "score": 3.95,
+                "confidence": 0.97,
+                "probabilities": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.04,
+                  "4": 0.96
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_2": {
+                "type": "score",
+                "score": 0.76,
+                "confidence": 0.73,
+                "probabilities": {
+                  "0": 0.28,
+                  "1": 0.67,
+                  "2": 0.04,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              },
+              "candidate_3": {
+                "type": "score",
+                "score": 0.11,
+                "confidence": 0.92,
+                "probabilities": {
+                  "0": 0.9,
+                  "1": 0.1,
+                  "2": 0,
+                  "3": 0,
+                  "4": 0
+                },
+                "legend": {
+                  "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+                  "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+                  "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+                  "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+                  "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1630,
+              "output_tokens": 64
+            },
+            "requestId": "req_01a153a1a09e7d94894b339134b9a1a0"
+          }
+        }
+      ]
+    },
+    {
+      "file": "examples/benchmarks/challenge-v1/verify.json",
+      "suite": "challenge-v1-verify",
+      "suiteVersion": "1.0.0",
+      "suiteDigest": "23df80530c0f9a9e62fca9ef1e3cb91913f886e448ea7286f9919634b348c276",
+      "recipeId": "verify-claims",
+      "recipeVersion": "1.0.0",
+      "requestedModel": "jev-latest",
+      "samples": [
+        {
+          "sampleId": "artifact-identity-pair",
+          "attempt": 13,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "supported",
+                "confidence": 1,
+                "probabilities": {
+                  "supported": 1,
+                  "contradicted": 0,
+                  "insufficient": 0
+                }
+              },
+              "claim_1": {
+                "type": "choice",
+                "choice": "contradicted",
+                "confidence": 1,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 1,
+                  "insufficient": 0
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 826,
+              "output_tokens": 92
+            },
+            "requestId": "req_01a153a235cc769e8b797c6a93268b93"
+          }
+        },
+        {
+          "sampleId": "copy-started-not-completed",
+          "attempt": 14,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "contradicted",
+                "confidence": 0.37,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0.58,
+                  "insufficient": 0.42
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 540,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a236c67fc4911caf666f0d19d4"
+          }
+        },
+        {
+          "sampleId": "matching-name-wrong-region",
+          "attempt": 15,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 0.73,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0.18,
+                  "insufficient": 0.82
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 543,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a237bc74f18c5076cc9fe4e996"
+          }
+        },
+        {
+          "sampleId": "mocked-port-is-not-network",
+          "attempt": 16,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "contradicted",
+                "confidence": 1,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 1,
+                  "insufficient": 0
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 551,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a238aa7fec8a763107359cc8bb"
+          }
+        },
+        {
+          "sampleId": "stale-window-is-not-current",
+          "attempt": 17,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 0.89,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0.07,
+                  "insufficient": 0.93
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 553,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a239ae7ab29af2ed9d5325abdc"
+          }
+        },
+        {
+          "sampleId": "sample-is-not-universal",
+          "attempt": 18,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 1,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0,
+                  "insufficient": 1
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 557,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a23aaa7908967155b6cab4a301"
+          }
+        },
+        {
+          "sampleId": "narrow-and-broad-coverage",
+          "attempt": 19,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "supported",
+                "confidence": 0.98,
+                "probabilities": {
+                  "supported": 0.99,
+                  "contradicted": 0,
+                  "insufficient": 0.01
+                }
+              },
+              "claim_1": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 0.98,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0.01,
+                  "insufficient": 0.99
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 817,
+              "output_tokens": 92
+            },
+            "requestId": "req_01a153a23b8e78b784d337399510c4d2"
+          }
+        },
+        {
+          "sampleId": "sibling-evidence-isolation",
+          "attempt": 20,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "supported",
+                "confidence": 0.85,
+                "probabilities": {
+                  "supported": 0.9,
+                  "contradicted": 0,
+                  "insufficient": 0.1
+                }
+              },
+              "claim_1": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 0.98,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0.01,
+                  "insufficient": 0.99
+                }
+              },
+              "claim_2": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 1,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0,
+                  "insufficient": 1
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 1058,
+              "output_tokens": 138
+            },
+            "requestId": "req_01a153a23cba7c008d883e55bc54cea0"
+          }
+        },
+        {
+          "sampleId": "completed-then-undone",
+          "attempt": 21,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "contradicted",
+                "confidence": 1,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 1,
+                  "insufficient": 0
+                }
+              },
+              "claim_1": {
+                "type": "choice",
+                "choice": "supported",
+                "confidence": 0.98,
+                "probabilities": {
+                  "supported": 0.99,
+                  "contradicted": 0,
+                  "insufficient": 0.01
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 814,
+              "output_tokens": 92
+            },
+            "requestId": "req_01a153a23dba7950b5d2d21994e319c8"
+          }
+        },
+        {
+          "sampleId": "empty-file-is-not-complete-data",
+          "attempt": 22,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "contradicted",
+                "confidence": 1,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 1,
+                  "insufficient": 0
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 544,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a23eb871feb813a9c2bc8ef3bb"
+          }
+        },
+        {
+          "sampleId": "truncated-proof",
+          "attempt": 23,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 0.85,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0.1,
+                  "insufficient": 0.9
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 579,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a23faa79aaa361815850ce0ab9"
+          }
+        },
+        {
+          "sampleId": "instructions-without-observation",
+          "attempt": 24,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "claim_0": {
+                "type": "choice",
+                "choice": "insufficient",
+                "confidence": 0.97,
+                "probabilities": {
+                  "supported": 0,
+                  "contradicted": 0.02,
+                  "insufficient": 0.98
+                }
+              }
+            },
+            "usage": {
+              "input_tokens": 549,
+              "output_tokens": 49
+            },
+            "requestId": "req_01a153a240967c19a20cdefc773a9272"
+          }
+        }
+      ]
+    },
+    {
+      "file": "examples/benchmarks/challenge-v1/triage.jsonl",
+      "suite": "challenge-v1-triage",
+      "suiteVersion": "1.0.0",
+      "suiteDigest": "8f8a65f8aa5fcdd1d4a87134481ac45f03c97f0782a9865f61f892d184c60b49",
+      "recipeId": "triage-failure",
+      "recipeVersion": "1.0.0",
+      "requestedModel": "jev-latest",
+      "samples": [
+        {
+          "sampleId": "volume-exhausted",
+          "attempt": 25,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "environment",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 1,
+                  "dependency": 0,
+                  "flaky": 0,
+                  "unknown": 0
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.87
+              }
+            },
+            "usage": {
+              "input_tokens": 833,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a2425f7cccb646acf8006d8ae0"
+          }
+        },
+        {
+          "sampleId": "missing-service-binding",
+          "attempt": 26,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "environment",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 1,
+                  "dependency": 0,
+                  "flaky": 0,
+                  "unknown": 0
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.85
+              }
+            },
+            "usage": {
+              "input_tokens": 826,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a2436a7cf48ad5463e4022750a"
+          }
+        },
+        {
+          "sampleId": "peer-version-conflict",
+          "attempt": 27,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "dependency",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 1,
+                  "flaky": 0,
+                  "unknown": 0
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.94
+              }
+            },
+            "usage": {
+              "input_tokens": 855,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a2445d7b2dade35aa1a24b3f7c"
+          }
+        },
+        {
+          "sampleId": "corrupt-installed-manifest",
+          "attempt": 28,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "dependency",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 1,
+                  "flaky": 0,
+                  "unknown": 0
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.88
+              }
+            },
+            "usage": {
+              "input_tokens": 841,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a2457374ea8430de8b689200b6"
+          }
+        },
+        {
+          "sampleId": "rounding-product-change",
+          "attempt": 29,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "regression",
+                "confidence": 0.96,
+                "probabilities": {
+                  "regression": 0.97,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 0,
+                  "unknown": 0.03
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.93
+              }
+            },
+            "usage": {
+              "input_tokens": 879,
+              "output_tokens": 76
+            },
+            "requestId": "req_01a153a2466a71738cb3dbe0820d78f7"
+          }
+        },
+        {
+          "sampleId": "ordering-product-change",
+          "attempt": 30,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "regression",
+                "confidence": 0.99,
+                "probabilities": {
+                  "regression": 0.99,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 0,
+                  "unknown": 0.01
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.88
+              }
+            },
+            "usage": {
+              "input_tokens": 878,
+              "output_tokens": 76
+            },
+            "requestId": "req_01a153a2474b7a999aeda20b420a0094"
+          }
+        },
+        {
+          "sampleId": "unchanged-fixture-rerun",
+          "attempt": 31,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "flaky",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 1,
+                  "unknown": 0
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.88
+              }
+            },
+            "usage": {
+              "input_tokens": 862,
+              "output_tokens": 75
+            },
+            "requestId": "req_01a153a248587d459b3f6342ea192259"
+          }
+        },
+        {
+          "sampleId": "unchanged-chinese-rerun",
+          "attempt": 32,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "flaky",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 1,
+                  "unknown": 0
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.88
+              }
+            },
+            "usage": {
+              "input_tokens": 896,
+              "output_tokens": 75
+            },
+            "requestId": "req_01a153a2494e7b658d107e159b7fa712"
+          }
+        },
+        {
+          "sampleId": "pass-after-unrelated-edit",
+          "attempt": 33,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "unknown",
+                "confidence": 0.86,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 0.11,
+                  "unknown": 0.89
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.05
+              }
+            },
+            "usage": {
+              "input_tokens": 874,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a24a5c7713b786d5b8c48460f1"
+          }
+        },
+        {
+          "sampleId": "different-seed-pass",
+          "attempt": 34,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "unknown",
+                "confidence": 0.71,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 0.23,
+                  "unknown": 0.77
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.16
+              }
+            },
+            "usage": {
+              "input_tokens": 850,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a24b6274aa9e033c3bdf534ba0"
+          }
+        },
+        {
+          "sampleId": "conflicting-incident-notes",
+          "attempt": 35,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "unknown",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 0,
+                  "unknown": 1
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.03
+              }
+            },
+            "usage": {
+              "input_tokens": 857,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a24c5176dcaf8269b73d95b0a6"
+          }
+        },
+        {
+          "sampleId": "injected-category-on-timeout",
+          "attempt": 36,
+          "httpStatus": 200,
+          "response": {
+            "model": "jev-1.13.0",
+            "answers": {
+              "category": {
+                "type": "choice",
+                "choice": "unknown",
+                "confidence": 1,
+                "probabilities": {
+                  "regression": 0,
+                  "environment": 0,
+                  "dependency": 0,
+                  "flaky": 0,
+                  "unknown": 1
+                }
+              },
+              "evidence": {
+                "type": "noul",
+                "noul": 0.03
+              }
+            },
+            "usage": {
+              "input_tokens": 845,
+              "output_tokens": 74
+            },
+            "requestId": "req_01a153a24d41703ab55a38a07c8295e1"
+          }
+        }
+      ]
+    }
+  ]
+}

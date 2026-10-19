@@ -1,0 +1,166 @@
+[
+  {
+    "sampleId": "cursor-inclusive-boundary",
+    "candidates": [
+      {
+        "id": "predicate",
+        "title": "Row selector",
+        "score": 0.9825,
+        "confidence": 0.96,
+        "requiresReview": true,
+        "reviewReason": "score_rounding",
+        "judgment": {
+          "type": "score",
+          "score": 3.93,
+          "legend": {
+            "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+            "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+            "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+            "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+            "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+          },
+          "probabilities": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0.05,
+            "4": 0.95
+          },
+          "confidence": 0.96,
+          "consistency": {
+            "policy": "rounded-2dp",
+            "requiresReview": true,
+            "reportedExpectation": 3.9499999999999997,
+            "minimumExpectation": 3.92,
+            "maximumExpectation": 3.955
+          }
+        },
+        "originalIndex": 2,
+        "rank": 1
+      }
+    ]
+  },
+  {
+    "sampleId": "template-over-generated-copy",
+    "candidates": [
+      {
+        "id": "generated",
+        "title": "generated/widget.ts",
+        "score": 0.72,
+        "confidence": 0.18,
+        "requiresReview": true,
+        "reviewReason": "score_rounding",
+        "judgment": {
+          "type": "score",
+          "score": 2.88,
+          "legend": {
+            "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+            "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+            "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+            "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+            "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+          },
+          "probabilities": {
+            "0": 0,
+            "1": 0.04,
+            "2": 0.33,
+            "3": 0.32,
+            "4": 0.31
+          },
+          "confidence": 0.18,
+          "consistency": {
+            "policy": "rounded-2dp",
+            "requiresReview": true,
+            "reportedExpectation": 2.9000000000000004,
+            "minimumExpectation": 2.87,
+            "maximumExpectation": 2.92
+          }
+        },
+        "originalIndex": 0,
+        "rank": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "cross-process-singleflight-pair",
+    "candidates": [
+      {
+        "id": "guide",
+        "title": "Build terminology",
+        "score": 0.575,
+        "confidence": 0.43,
+        "requiresReview": true,
+        "reviewReason": "score_rounding",
+        "judgment": {
+          "type": "score",
+          "score": 2.3,
+          "legend": {
+            "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+            "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+            "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+            "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+            "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+          },
+          "probabilities": {
+            "0": 0.01,
+            "1": 0.16,
+            "2": 0.46,
+            "3": 0.24,
+            "4": 0.13
+          },
+          "confidence": 0.43,
+          "consistency": {
+            "policy": "rounded-2dp",
+            "requiresReview": true,
+            "reportedExpectation": 2.3200000000000003,
+            "minimumExpectation": 2.2900000000000005,
+            "maximumExpectation": 2.3499999999999996
+          }
+        },
+        "originalIndex": 1,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "sampleId": "unicode-normalization-key",
+    "candidates": [
+      {
+        "id": "sample",
+        "title": "输入说明",
+        "score": 0.4125,
+        "confidence": 0.44,
+        "requiresReview": true,
+        "reviewReason": "score_rounding",
+        "judgment": {
+          "type": "score",
+          "score": 1.65,
+          "legend": {
+            "0": "Unrelated to the task's target behavior or investigation; supplies no useful evidence or context.",
+            "1": "Has a weak, indirect connection to the task, with little useful investigative context.",
+            "2": "Provides some useful evidence or necessary context for part of the task, but its connection to the target behavior is partial.",
+            "3": "Strongly relevant to the target behavior and provides substantial direct evidence or necessary context for investigating it.",
+            "4": "Directly identifies the task's target behavior, source, or decisive evidence; this material is central to the investigation."
+          },
+          "probabilities": {
+            "0": 0.07,
+            "1": 0.38,
+            "2": 0.43,
+            "3": 0.09,
+            "4": 0.03
+          },
+          "confidence": 0.44,
+          "consistency": {
+            "policy": "rounded-2dp",
+            "requiresReview": true,
+            "reportedExpectation": 1.63,
+            "minimumExpectation": 1.6,
+            "maximumExpectation": 1.6600000000000001
+          }
+        },
+        "originalIndex": 2,
+        "rank": 2
+      }
+    ]
+  }
+]

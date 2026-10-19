@@ -81,7 +81,7 @@ test("each new challenge has a complete annotation and reuses no first-benchmark
     suites: Array<{ file: string; recipeId: string; annotations: Array<{ sampleId: string; tags: string[]; rationale: string }> }>;
   };
   assert.equal(notes.dataset, "challenge-v1");
-  assert.equal(notes.status, "prelabeled-not-model-evaluated");
+  assert.equal(notes.status, "prelabeled-before-model-evaluation");
   assert.equal(notes.independentHumanReview, false);
   assert.deepEqual(notes.suites.map(s => s.file).sort(), [...files].sort());
   const previous = files.map(file => parseSuiteText(read(file)));
