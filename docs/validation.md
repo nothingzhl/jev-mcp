@@ -4,12 +4,13 @@
 
 ## 本轮实际执行
 
-- `TYPESAFE_API_KEY= npm run check`：strict 类型检查、76 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含 36 个基准案例计划、全部历史响应重放、Score 浮点边界及保守舍入兼容回归。
+- `TYPESAFE_API_KEY= npm run check`：strict 类型检查、78 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含第一批 36 个基准案例计划、全部历史响应重放、Score 浮点边界及保守舍入兼容，以及第二批 36 个新案例的计划/标注资产校验。
 - `npm run demo`：成功生成候选排序请求计划，无模型调用、无数据库写入。
 - 文档中的编译版 evaluate 命令：JSON 与 JSONL 计划、三个规则的固定预测评分均通过。
 - 编译版 compare：合成 A/B 报告保留原始分母与 unknown/review；unknownRecall 差值为 1（0/1 → 1/1）。这仅验证对比器。
 - 编译版 CLI/MCP：直接启动产物，检查工具列表与三个规则 dry run；检查 CLI doctor、SQLite 内存 history 与两个 stdio 启动入口。
 - `git diff --check` 通过；未改变依赖声明、锁文件或用户的全局配置。
+- 第二批 challenge-v1：三个编译版 CLI 无 key 的计划输出与保存快照完全一致；共 36 个样本、89 个问题、36 个逻辑请求。新旧样本 ID/完整输入无重复，标注一一对应，证据负例 13 条，unknown 标签 4 项；请求 state 不包含标签或标注理由。未调用模型、未保存质量报告，详见 [准备说明](challenge-v1.md)。
 
 ## 评测与存储覆盖
 
@@ -36,5 +37,7 @@
 后续真实复测已完成：三规则技术冒烟、SQLite 重开及 36 个基准案例均执行，34 项可计分、2 项排序响应保持 INVALID_RESPONSE。实际模型为 jev-1.13.0，结果已离线复放核对，见 [评测结果](evaluation-results/2026-10-19-jev-1.13.0/README.md) 和 [首次调试记录](live-validation.md)。这是小规模预标注合成数据的实测证据，尚无生产准确率、阈值校准或效率收益结论，实际费用也未核对。
 
 随后完成[保守 Score 兼容重放](evaluation-results/2026-10-19-score-compatibility/README.md)：rank-candidates 1.1.0 在本地两位小数舍入假设下接收两项旧错误，四处兼容 Score 强制 review。全部 36 份历史响应可计分；排序关键项 14/14、topK review 6/14，证据/归类的所有指标不变。新增请求为 0，未改变原始实测报告或调用记录。官方小数精度契约仍未确认，不能将此离线结果称为新一轮实测。
+
+第二批 challenge-v1 仅完成合成案例、预标注及请求计划；尚无独立人工复核或真实模型结果。当前离线通过不证明新案例上的判断质量，也未验证 Score 兼容策略在新响应中的覆盖率；现有阈值和规则版本均未再调整。
 
 长期运行、持久化 running 状态、进程中断后的在途恢复/exactly-once、多机共享数据库、降级迁移、输入采集适配器和 Web 控制台未实现。本轮多进程测试只验证本机初始化/迁移及元数据写入。真实质量评测需要另行授权与合适的标注样本，按 docs/evaluation.md 显式使用 live 和样本/请求上限。

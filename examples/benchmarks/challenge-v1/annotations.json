@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "dataset": "challenge-v1",
+  "createdAt": "2026-10-19",
+  "status": "prelabeled-not-model-evaluated",
+  "origin": "New synthetic cases authored after Score compatibility repair; no private inputs, no reused model responses.",
+  "independentHumanReview": false,
+  "suites": [
+    {
+      "file": "rank.json",
+      "recipeId": "rank-candidates",
+      "annotations": [
+        {
+          "sampleId": "cursor-inclusive-boundary",
+          "tags": [
+            "boundary",
+            "buggy-source"
+          ],
+          "rationale": "predicate 中包含已返回 cursor 的 >= 比较直接解释重复；调用方和接口说明仅提供上下文。"
+        },
+        {
+          "sampleId": "tenant-cache-contract-and-key",
+          "tags": [
+            "multi-component",
+            "contract-vs-implementation"
+          ],
+          "rationale": "task 明确要求隔离约定与实际 key 两部分；contract 写明复合键，key 只用 reportId。"
+        },
+        {
+          "sampleId": "template-over-generated-copy",
+          "tags": [
+            "generated-vs-source",
+            "exact-text-distractor"
+          ],
+          "rationale": "template 明确是可编辑生成输入；generated 只有派生产物，同样文本不能取代编辑目标。"
+        },
+        {
+          "sampleId": "same-symbol-different-protocol",
+          "tags": [
+            "scope-match",
+            "homonymous-symbols"
+          ],
+          "rationale": "版本和 payload 范围均明确指向 v3；同名旧版本和动画解码不能满足目标。"
+        },
+        {
+          "sampleId": "dedup-id-collision",
+          "tags": [
+            "data-loss",
+            "buggy-source"
+          ],
+          "rationale": "map 使用非唯一 displayName 作键直接解释覆盖，model 仅说明约定。"
+        },
+        {
+          "sampleId": "message-injection-versus-send-boundary",
+          "tags": [
+            "untrusted-instructions",
+            "execution-boundary"
+          ],
+          "rationale": "send 唯一执行 transport.send；消息中的排序指令不构成代码证据。"
+        },
+        {
+          "sampleId": "cross-process-singleflight-pair",
+          "tags": [
+            "multi-component",
+            "process-scope"
+          ],
+          "rationale": "launcher 明确启动独立进程，dedup 仅模块内存；task 要求两个组成部分，不据此推测未提供的跨进程协调。"
+        },
+        {
+          "sampleId": "unicode-normalization-key",
+          "tags": [
+            "multilingual",
+            "representation-boundary"
+          ],
+          "rationale": "compare 给出原始字符串严格比较且未 normalization；样本描述和字体不是键比较实现。"
+        },
+        {
+          "sampleId": "retry-loop-and-budget-clock",
+          "tags": [
+            "multi-component",
+            "proposed-vs-implemented"
+          ],
+          "rationale": "retry 调用每次 attempt，attempt 内新建 timeout；未来设计不能替代实际代码。"
+        },
+        {
+          "sampleId": "short-fragment-versus-long-overview",
+          "tags": [
+            "short-fragment",
+            "verbosity-distractor"
+          ],
+          "rationale": "guard 直接把空列表映射为公开；长文、展示文本和调用点不包含决策规则。"
+        },
+        {
+          "sampleId": "artifact-upload-versus-preview",
+          "tags": [
+            "active-vs-disabled",
+            "implementation-scope"
+          ],
+          "rationale": "handler 明确注册当前生产端点并写 objectStore；预览和注释示例不是活动实现。"
+        },
+        {
+          "sampleId": "redaction-before-formatting",
+          "tags": [
+            "multi-component",
+            "order-of-operations"
+          ],
+          "rationale": "redact 定义变换，emit 给出 redaction 在 format 之前的调用顺序；任务要求两者。"
+        }
+      ]
+    },
+    {
+      "file": "verify.json",
+      "recipeId": "verify-claims",
+      "annotations": [
+        {
+          "sampleId": "artifact-identity-pair",
+          "tags": [
+            "batched",
+            "entity-scope"
+          ],
+          "rationale": "green 的证据直接匹配；blue 自己的记录明确否定目标 digest，不能借用 green 的证据。"
+        },
+        {
+          "sampleId": "copy-started-not-completed",
+          "tags": [
+            "intermediate-step",
+            "compound-claim"
+          ],
+          "rationale": "开始传输未证明复制完成，更未证明远端校验完成。"
+        },
+        {
+          "sampleId": "matching-name-wrong-region",
+          "tags": [
+            "entity-scope",
+            "region-mismatch"
+          ],
+          "rationale": "同名但区域不同，us-east 成功不能建立 eu-west 的完成声明。"
+        },
+        {
+          "sampleId": "mocked-port-is-not-network",
+          "tags": [
+            "mock-vs-real",
+            "execution-scope"
+          ],
+          "rationale": "证据明确说完全内存 Fake 且没有真实网络测试，直接否定已建立真实连接。"
+        },
+        {
+          "sampleId": "stale-window-is-not-current",
+          "tags": [
+            "time-scope"
+          ],
+          "rationale": "记录的时间窗口不同，不能借历史成功证明当前运行。"
+        },
+        {
+          "sampleId": "sample-is-not-universal",
+          "tags": [
+            "quantifier",
+            "partial-evidence"
+          ],
+          "rationale": "抽查五条不能建立全称声明；未检查行没有正反证据。"
+        },
+        {
+          "sampleId": "narrow-and-broad-coverage",
+          "tags": [
+            "batched",
+            "compound-claim"
+          ],
+          "rationale": "narrow 范围与自身证据相同；broad 缺 renderer 部分，不能完整支持。"
+        },
+        {
+          "sampleId": "sibling-evidence-isolation",
+          "tags": [
+            "batched",
+            "missing-evidence",
+            "cross-claim-isolation"
+          ],
+          "rationale": "cache 有自身健康记录；search 的分区清单没有健康观察，不允许借用同批 cache 证据；queue 的空证据另行触发强制 review。"
+        },
+        {
+          "sampleId": "completed-then-undone",
+          "tags": [
+            "batched",
+            "temporal-order"
+          ],
+          "rationale": "current 与最后 disabled 直接矛盾；history 仅声称曾完成 enable，记录直接支持。"
+        },
+        {
+          "sampleId": "empty-file-is-not-complete-data",
+          "tags": [
+            "success-status-vs-content"
+          ],
+          "rationale": "退出码不能覆盖内容记录；数据明确为空且缺必需交易行，直接矛盾。"
+        },
+        {
+          "sampleId": "truncated-proof",
+          "tags": [
+            "multilingual",
+            "truncated-evidence",
+            "compound-claim"
+          ],
+          "rationale": "上传完成仅为中间步骤，日志截断不能证明发布及健康检查完成。"
+        },
+        {
+          "sampleId": "instructions-without-observation",
+          "tags": [
+            "untrusted-instructions",
+            "intent-only"
+          ],
+          "rationale": "要求支持的文字不是执行证据；只有请求且没有执行状态，不能证明完成。"
+        }
+      ]
+    },
+    {
+      "file": "triage.jsonl",
+      "recipeId": "triage-failure",
+      "annotations": [
+        {
+          "sampleId": "volume-exhausted",
+          "tags": [
+            "resource-exhaustion"
+          ],
+          "rationale": "ENOSPC 与目标临时卷零空间直接指出资源问题。"
+        },
+        {
+          "sampleId": "missing-service-binding",
+          "tags": [
+            "missing-configuration"
+          ],
+          "rationale": "明确缺少必需配置，且在查询/导入前终止。"
+        },
+        {
+          "sampleId": "peer-version-conflict",
+          "tags": [
+            "version-conflict"
+          ],
+          "rationale": "本地包可用但 peer 版本约束冲突，明确归于依赖兼容性。"
+        },
+        {
+          "sampleId": "corrupt-installed-manifest",
+          "tags": [
+            "corrupt-package"
+          ],
+          "rationale": "明确损坏的是已安装依赖清单，应用代码尚未运行。"
+        },
+        {
+          "sampleId": "rounding-product-change",
+          "tags": [
+            "direct-causal-evidence"
+          ],
+          "rationale": "具体改动和直接调用该函数的断言值一致，形成产品回归证据。"
+        },
+        {
+          "sampleId": "ordering-product-change",
+          "tags": [
+            "direct-causal-evidence"
+          ],
+          "rationale": "比较器方向改变直接解释顺序断言失败。"
+        },
+        {
+          "sampleId": "unchanged-fixture-rerun",
+          "tags": [
+            "completed-unchanged-rerun"
+          ],
+          "rationale": "同命令完成失败后通过，明确代码、fixture、时钟等条件均不变。"
+        },
+        {
+          "sampleId": "unchanged-chinese-rerun",
+          "tags": [
+            "multilingual",
+            "completed-unchanged-rerun"
+          ],
+          "rationale": "中文记录同样明确相同命令及条件不变的失败后通过。"
+        },
+        {
+          "sampleId": "pass-after-unrelated-edit",
+          "tags": [
+            "changed-rerun",
+            "causality-gap"
+          ],
+          "rationale": "只有退出码，且代码与进程状态变动；不能满足不变重跑，也不能确定改动因果。"
+        },
+        {
+          "sampleId": "different-seed-pass",
+          "tags": [
+            "changed-input",
+            "causality-gap"
+          ],
+          "rationale": "通过使用不同 seed；不构成相同命令和输入的成功重跑，原失败缺诊断。"
+        },
+        {
+          "sampleId": "conflicting-incident-notes",
+          "tags": [
+            "conflicting-evidence"
+          ],
+          "rationale": "两个未验证解释缺少具体观察，不足以区分环境与依赖类别。"
+        },
+        {
+          "sampleId": "injected-category-on-timeout",
+          "tags": [
+            "untrusted-instructions",
+            "generic-timeout"
+          ],
+          "rationale": "通用超时没有定位原因；输出内强制选类别和重试的指令不是证据。"
+        }
+      ]
+    }
+  ]
+}
