@@ -11,7 +11,7 @@
 - SDK 单层重试、总时限、响应校验、并发上限与安全错误。
 - SQLite schema v2，事务保留 v1 调用/旧评测摘要，新增版本化评测聚合报告；不存原始材料或 key，不缓存结果。
 - JSON/JSONL 标注集、计划/外部预测/live 评测器、模型/规则版本对比、项目级 Codex skill 与取消/并发边界测试。
-- 合成样例、离线测试和 dry-run，无真实 Jev 调用或真实模型质量评测证据。
+- 合成样例、离线测试和 dry-run；首次真实调用覆盖 36 个合成案例，34 项可计分、2 项响应校验错误。生产效果和阈值校准尚无证据。
 
 先执行：
 
@@ -35,7 +35,7 @@ npm run demo
 
 ### 第一轮实现状态
 
-上述五项的离线实现已完成：标注 schema/分项评测、schema v2 增量迁移、evaluate/compare/evaluations CLI、项目级 Codex skill，以及取消/排队和多进程 SQLite 边界测试。运行方式见 [docs/evaluation.md](docs/evaluation.md)，本轮实际验证与未覆盖项见 [docs/validation.md](docs/validation.md)。固定合成预测验证的是评测代码，没有真实 Jev 质量、阈值校准或效率收益结论。
+上述五项的离线实现已完成：标注 schema/分项评测、schema v2 增量迁移、evaluate/compare/evaluations CLI、项目级 Codex skill，以及取消/排队和多进程 SQLite 边界测试。运行方式见 [docs/evaluation.md](docs/evaluation.md)，实际验证与未覆盖项见 [docs/validation.md](docs/validation.md)。后续已完成首次小规模真实调用评测，结果仅针对预标注合成样本；尚无生产效果、阈值校准或效率收益结论。
 
 ## 后续迭代（本轮不要求）
 

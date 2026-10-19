@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-19T09:20:47.169920+00:00",
+  "codeCommit": "7159583",
+  "requestedModel": "jev-latest",
+  "actualModels": [
+    "jev-1.13.0"
+  ],
+  "source": "real API responses scored offline; report.source=recorded",
+  "sdkMaxRetries": 0,
+  "priorAttempts": 3,
+  "currentAttempts": 36,
+  "totalAttempts": 39,
+  "technicalSmokePassed": true,
+  "smokeReusedAsBenchmarkCases": true,
+  "successfulSamples": 34,
+  "failedSamples": 2,
+  "storage": {
+    "runRows": 36,
+    "reportRows": 3,
+    "reopenVerified": true
+  },
+  "reportedUsageForCurrentBatch": {
+    "inputTokens": 32371,
+    "outputTokens": 2073,
+    "requests": 36,
+    "priorDebugUsageIncluded": false
+  },
+  "costVerified": false
+}

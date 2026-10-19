@@ -1,0 +1,70 @@
+[
+  {
+    "attempt": 16,
+    "sampleId": "migration-lock-order",
+    "questionId": "candidate_0",
+    "providerScore": 0.69,
+    "probabilities": {
+      "0": 0.42,
+      "1": 0.5,
+      "2": 0.07,
+      "3": 0.01,
+      "4": 0
+    },
+    "weightedExpectation": 0.67,
+    "absoluteDifference": 0.019999999999999907,
+    "configuredTolerance": 0.01,
+    "errorCode": "INVALID_RESPONSE"
+  },
+  {
+    "attempt": 16,
+    "sampleId": "migration-lock-order",
+    "questionId": "candidate_2",
+    "providerScore": 3.94,
+    "probabilities": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0.04,
+      "4": 0.96
+    },
+    "weightedExpectation": 3.96,
+    "absoluteDifference": 0.020000000000000018,
+    "configuredTolerance": 0.01,
+    "errorCode": "INVALID_RESPONSE"
+  },
+  {
+    "attempt": 31,
+    "sampleId": "chinese-task",
+    "questionId": "candidate_0",
+    "providerScore": 0.28,
+    "probabilities": {
+      "0": 0.76,
+      "1": 0.22,
+      "2": 0.02,
+      "3": 0,
+      "4": 0
+    },
+    "weightedExpectation": 0.26,
+    "absoluteDifference": 0.020000000000000018,
+    "configuredTolerance": 0.01,
+    "errorCode": "INVALID_RESPONSE"
+  },
+  {
+    "attempt": 31,
+    "sampleId": "chinese-task",
+    "questionId": "candidate_1",
+    "providerScore": 3.89,
+    "probabilities": {
+      "0": 0,
+      "1": 0,
+      "2": 0.01,
+      "3": 0.07,
+      "4": 0.92
+    },
+    "weightedExpectation": 3.91,
+    "absoluteDifference": 0.020000000000000018,
+    "configuredTolerance": 0.01,
+    "errorCode": "INVALID_RESPONSE"
+  }
+]

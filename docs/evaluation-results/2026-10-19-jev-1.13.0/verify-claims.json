@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "evaluatorVersion": "1.0.0",
+  "id": "fff46503-a1fd-4442-a3af-440cae06ed08",
+  "suite": "readiness-verify",
+  "suiteVersion": "1.0.0",
+  "suiteDigest": "dee8ced1c5174e08bd65ccb20535191e3cee3f532de3adee61ab8818982fa982",
+  "sampleDigest": "dee8ced1c5174e08bd65ccb20535191e3cee3f532de3adee61ab8818982fa982",
+  "recipeId": "verify-claims",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "jev-latest",
+  "actualModels": [
+    "jev-1.13.0"
+  ],
+  "source": "recorded",
+  "createdAt": "2026-10-19T09:18:41.022Z",
+  "totalSamples": 12,
+  "evaluatedSamples": 12,
+  "failedSamples": 0,
+  "metrics": {
+    "falseAcceptanceRate": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0
+    },
+    "acceptanceErrorRate": {
+      "numerator": 0,
+      "denominator": 4,
+      "rate": 0
+    },
+    "supportedAcceptanceRate": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1
+    },
+    "verdictAccuracy": {
+      "numerator": 12,
+      "denominator": 12,
+      "rate": 1
+    },
+    "reviewRate": {
+      "numerator": 5,
+      "denominator": 12,
+      "rate": 0.4166666666666667
+    },
+    "errorRate": {
+      "numerator": 0,
+      "denominator": 12,
+      "rate": 0
+    }
+  },
+  "errors": {}
+}

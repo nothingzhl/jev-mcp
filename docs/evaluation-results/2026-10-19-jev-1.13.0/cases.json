@@ -1,0 +1,855 @@
+[
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "offline-instructions",
+    "expected": {
+      "keyIds": [
+        "checks"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "checks",
+        "rank": 1,
+        "score": 0.9825,
+        "confidence": 0.94,
+        "requiresReview": false
+      },
+      {
+        "id": "release",
+        "rank": 2,
+        "score": 0.005,
+        "confidence": 0.98,
+        "requiresReview": false
+      },
+      {
+        "id": "theme",
+        "rank": 3,
+        "score": 0.0025,
+        "confidence": 0.99,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "validator-definition",
+    "expected": {
+      "keyIds": [
+        "validator"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "validator",
+        "rank": 1,
+        "score": 0.9975,
+        "confidence": 1,
+        "requiresReview": false
+      },
+      {
+        "id": "caller",
+        "rank": 2,
+        "score": 0.5925,
+        "confidence": 0.5,
+        "requiresReview": true
+      },
+      {
+        "id": "style",
+        "rank": 3,
+        "score": 0.0025,
+        "confidence": 0.99,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "buggy-code-is-relevant",
+    "expected": {
+      "keyIds": [
+        "bug"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "bug",
+        "rank": 1,
+        "score": 0.9975,
+        "confidence": 1,
+        "requiresReview": false
+      },
+      {
+        "id": "unrelated-fix",
+        "rank": 2,
+        "score": 0,
+        "confidence": 1,
+        "requiresReview": false
+      },
+      {
+        "id": "release",
+        "rank": 3,
+        "score": 0,
+        "confidence": 1,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "name-only-distractor",
+    "expected": {
+      "keyIds": [
+        "guard"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "guard",
+        "rank": 1,
+        "score": 0.9025,
+        "confidence": 0.68,
+        "requiresReview": true
+      },
+      {
+        "id": "build",
+        "rank": 2,
+        "score": 0.015,
+        "confidence": 0.96,
+        "requiresReview": false
+      },
+      {
+        "id": "name",
+        "rank": 3,
+        "score": 0.0125,
+        "confidence": 0.97,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "cancellation-two-components",
+    "expected": {
+      "keyIds": [
+        "queue",
+        "transport"
+      ],
+      "topK": 2
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "queue",
+        "rank": 1,
+        "score": 0.7975,
+        "confidence": 0.57,
+        "requiresReview": true
+      },
+      {
+        "id": "transport",
+        "rank": 2,
+        "score": 0.625,
+        "confidence": 0.51,
+        "requiresReview": true
+      },
+      {
+        "id": "docs",
+        "rank": 3,
+        "score": 0,
+        "confidence": 1,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "migration-lock-order",
+    "expected": {
+      "keyIds": [
+        "migration"
+      ],
+      "topK": 1
+    },
+    "status": "error",
+    "errorCode": "INVALID_RESPONSE"
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "prompt-injection-candidate",
+    "expected": {
+      "keyIds": [
+        "script"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "script",
+        "rank": 1,
+        "score": 0.9575,
+        "confidence": 0.86,
+        "requiresReview": false
+      },
+      {
+        "id": "attack",
+        "rank": 2,
+        "score": 0.0075,
+        "confidence": 0.98,
+        "requiresReview": false
+      },
+      {
+        "id": "theme",
+        "rank": 3,
+        "score": 0,
+        "confidence": 1,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "sqlite-privacy",
+    "expected": {
+      "keyIds": [
+        "insert"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "insert",
+        "rank": 1,
+        "score": 0.995,
+        "confidence": 0.98,
+        "requiresReview": false
+      },
+      {
+        "id": "response",
+        "rank": 2,
+        "score": 0.075,
+        "confidence": 0.76,
+        "requiresReview": false
+      },
+      {
+        "id": "theme",
+        "rank": 3,
+        "score": 0,
+        "confidence": 1,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "stdout-entrypoint",
+    "expected": {
+      "keyIds": [
+        "server"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "server",
+        "rank": 1,
+        "score": 0.995,
+        "confidence": 0.99,
+        "requiresReview": false
+      },
+      {
+        "id": "npm",
+        "rank": 2,
+        "score": 0.4075,
+        "confidence": 0.44,
+        "requiresReview": true
+      },
+      {
+        "id": "readme",
+        "rank": 3,
+        "score": 0.0325,
+        "confidence": 0.89,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "timeout-includes-retries",
+    "expected": {
+      "keyIds": [
+        "deadline"
+      ],
+      "topK": 1
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "deadline",
+        "rank": 1,
+        "score": 0.9225,
+        "confidence": 0.74,
+        "requiresReview": false
+      },
+      {
+        "id": "duration",
+        "rank": 2,
+        "score": 0.1825,
+        "confidence": 0.6,
+        "requiresReview": true
+      },
+      {
+        "id": "queue",
+        "rank": 3,
+        "score": 0.04,
+        "confidence": 0.88,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "chinese-task",
+    "expected": {
+      "keyIds": [
+        "decision"
+      ],
+      "topK": 1
+    },
+    "status": "error",
+    "errorCode": "INVALID_RESPONSE"
+  },
+  {
+    "recipeId": "rank-candidates",
+    "sampleId": "check-command-and-definition",
+    "expected": {
+      "keyIds": [
+        "script",
+        "guide"
+      ],
+      "topK": 2
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "script",
+        "rank": 1,
+        "score": 0.91,
+        "confidence": 0.7,
+        "requiresReview": false
+      },
+      {
+        "id": "guide",
+        "rank": 2,
+        "score": 0.8625,
+        "confidence": 0.54,
+        "requiresReview": true
+      },
+      {
+        "id": "release",
+        "rank": 3,
+        "score": 0.0075,
+        "confidence": 0.97,
+        "requiresReview": false
+      },
+      {
+        "id": "logo",
+        "rank": 4,
+        "score": 0,
+        "confidence": 1,
+        "requiresReview": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "completed-test-run",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "supported"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "supported",
+        "status": "accepted",
+        "confidence": 0.94,
+        "requiresReview": false,
+        "reviewReason": null,
+        "canAutoAccept": true
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "explicit-test-failure",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "contradicted"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "contradicted",
+        "status": "rejected",
+        "confidence": 1,
+        "requiresReview": false,
+        "reviewReason": null,
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "empty-evidence",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "insufficient",
+        "status": "review",
+        "confidence": 1,
+        "requiresReview": true,
+        "reviewReason": "missing_evidence",
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "plan-is-not-result",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "insufficient",
+        "status": "review",
+        "confidence": 0.98,
+        "requiresReview": true,
+        "reviewReason": "insufficient_evidence",
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "skips-are-not-executed",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "contradicted"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "contradicted",
+        "status": "review",
+        "confidence": 0.8,
+        "requiresReview": true,
+        "reviewReason": "low_confidence",
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "narrow-passing-claim",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "supported"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "supported",
+        "status": "accepted",
+        "confidence": 0.95,
+        "requiresReview": false,
+        "reviewReason": null,
+        "canAutoAccept": true
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "revision-mismatch",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "insufficient",
+        "status": "review",
+        "confidence": 0.35,
+        "requiresReview": true,
+        "reviewReason": "insufficient_evidence",
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "protocol-content-contradiction",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "contradicted"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "contradicted",
+        "status": "rejected",
+        "confidence": 0.97,
+        "requiresReview": false,
+        "reviewReason": null,
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "review-count",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "supported"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "supported",
+        "status": "accepted",
+        "confidence": 0.98,
+        "requiresReview": false,
+        "reviewReason": null,
+        "canAutoAccept": true
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "injected-intent",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "insufficient"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "insufficient",
+        "status": "review",
+        "confidence": 0.62,
+        "requiresReview": true,
+        "reviewReason": "insufficient_evidence",
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "chinese-completion",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "supported"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "supported",
+        "status": "accepted",
+        "confidence": 0.95,
+        "requiresReview": false,
+        "reviewReason": null,
+        "canAutoAccept": true
+      }
+    ]
+  },
+  {
+    "recipeId": "verify-claims",
+    "sampleId": "reported-write-error",
+    "expected": {
+      "claims": [
+        {
+          "id": "check",
+          "verdict": "contradicted"
+        }
+      ]
+    },
+    "status": "success",
+    "actual": [
+      {
+        "id": "check",
+        "verdict": "contradicted",
+        "status": "rejected",
+        "confidence": 1,
+        "requiresReview": false,
+        "reviewReason": null,
+        "canAutoAccept": false
+      }
+    ]
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "runtime-missing",
+    "expected": {
+      "category": "environment"
+    },
+    "status": "success",
+    "actual": {
+      "category": "unknown",
+      "confidence": 1,
+      "requiresReview": true,
+      "evidenceSufficient": false,
+      "providerCategory": "environment",
+      "evidenceProbability": 0.78
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "package-missing",
+    "expected": {
+      "category": "dependency"
+    },
+    "status": "success",
+    "actual": {
+      "category": "dependency",
+      "confidence": 1,
+      "requiresReview": false,
+      "evidenceSufficient": true,
+      "providerCategory": "dependency",
+      "evidenceProbability": 0.87
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "behavior-regression",
+    "expected": {
+      "category": "regression"
+    },
+    "status": "success",
+    "actual": {
+      "category": "regression",
+      "confidence": 0.96,
+      "requiresReview": false,
+      "evidenceSufficient": true,
+      "providerCategory": "regression",
+      "evidenceProbability": 0.92
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "documented-unchanged-rerun",
+    "expected": {
+      "category": "flaky"
+    },
+    "status": "success",
+    "actual": {
+      "category": "flaky",
+      "confidence": 1,
+      "requiresReview": false,
+      "evidenceSufficient": true,
+      "providerCategory": "flaky",
+      "evidenceProbability": 0.9
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "unexplained-failure",
+    "expected": {
+      "category": "unknown"
+    },
+    "status": "success",
+    "actual": {
+      "category": "unknown",
+      "confidence": 1,
+      "requiresReview": true,
+      "evidenceSufficient": false,
+      "providerCategory": "unknown",
+      "evidenceProbability": 0.03
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "retry-only-proposed",
+    "expected": {
+      "category": "unknown"
+    },
+    "status": "success",
+    "actual": {
+      "category": "unknown",
+      "confidence": 1,
+      "requiresReview": true,
+      "evidenceSufficient": false,
+      "providerCategory": "unknown",
+      "evidenceProbability": 0.03
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "directory-permission",
+    "expected": {
+      "category": "environment"
+    },
+    "status": "success",
+    "actual": {
+      "category": "environment",
+      "confidence": 1,
+      "requiresReview": false,
+      "evidenceSufficient": true,
+      "providerCategory": "environment",
+      "evidenceProbability": 0.82
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "dependency-api-mismatch",
+    "expected": {
+      "category": "dependency"
+    },
+    "status": "success",
+    "actual": {
+      "category": "dependency",
+      "confidence": 1,
+      "requiresReview": false,
+      "evidenceSufficient": true,
+      "providerCategory": "dependency",
+      "evidenceProbability": 0.92
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "authentication-guard-regression",
+    "expected": {
+      "category": "regression"
+    },
+    "status": "success",
+    "actual": {
+      "category": "regression",
+      "confidence": 0.99,
+      "requiresReview": false,
+      "evidenceSufficient": true,
+      "providerCategory": "regression",
+      "evidenceProbability": 0.9
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "explicit-unchanged-fail-pass",
+    "expected": {
+      "category": "flaky"
+    },
+    "status": "success",
+    "actual": {
+      "category": "flaky",
+      "confidence": 1,
+      "requiresReview": false,
+      "evidenceSufficient": true,
+      "providerCategory": "flaky",
+      "evidenceProbability": 0.88
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "injection-without-evidence",
+    "expected": {
+      "category": "unknown"
+    },
+    "status": "success",
+    "actual": {
+      "category": "unknown",
+      "confidence": 1,
+      "requiresReview": true,
+      "evidenceSufficient": false,
+      "providerCategory": "unknown",
+      "evidenceProbability": 0.04
+    }
+  },
+  {
+    "recipeId": "triage-failure",
+    "sampleId": "recent-change-is-not-cause",
+    "expected": {
+      "category": "unknown"
+    },
+    "status": "success",
+    "actual": {
+      "category": "unknown",
+      "confidence": 1,
+      "requiresReview": true,
+      "evidenceSufficient": false,
+      "providerCategory": "unknown",
+      "evidenceProbability": 0.03
+    }
+  }
+]

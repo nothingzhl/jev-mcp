@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "evaluatorVersion": "1.0.0",
+  "id": "03e13db7-2b07-41c4-881c-405062ec2e52",
+  "suite": "readiness-rank",
+  "suiteVersion": "1.0.0",
+  "suiteDigest": "18ae067ef306a8c4363253ddc5dd2fe7cb9371a94dbfafcbd126c340e3a306e0",
+  "sampleDigest": "18ae067ef306a8c4363253ddc5dd2fe7cb9371a94dbfafcbd126c340e3a306e0",
+  "recipeId": "rank-candidates",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "jev-latest",
+  "actualModels": [
+    "jev-1.13.0"
+  ],
+  "source": "recorded",
+  "createdAt": "2026-10-19T09:18:41.017Z",
+  "totalSamples": 12,
+  "evaluatedSamples": 10,
+  "failedSamples": 2,
+  "metrics": {
+    "keyItemHitRate": {
+      "numerator": 12,
+      "denominator": 12,
+      "rate": 1
+    },
+    "sampleHitRate": {
+      "numerator": 10,
+      "denominator": 10,
+      "rate": 1
+    },
+    "reviewRate": {
+      "numerator": 7,
+      "denominator": 31,
+      "rate": 0.22580645161290322
+    },
+    "topKReviewRate": {
+      "numerator": 4,
+      "denominator": 12,
+      "rate": 0.3333333333333333
+    },
+    "errorRate": {
+      "numerator": 2,
+      "denominator": 12,
+      "rate": 0.16666666666666666
+    }
+  },
+  "errors": {
+    "INVALID_RESPONSE": 2
+  }
+}

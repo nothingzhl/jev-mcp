@@ -2,7 +2,7 @@
 
 为编码代理提供 TypeSafe Jev 判断能力的本地工具骨架。TypeScript 模块化单体，共用版本化规则和执行服务，提供 CLI 与 stdio MCP。Jev 提供判断和概率，本地代码负责排序、阈值、错误处理和存储。
 
-当前提供三个规则、官方 SDK 适配、超时与 SDK 重试、响应校验、SQLite 元数据存储、JSON/JSONL 评测闭环及模型/规则版本对比。评测器已通过固定合成预测验证；真实模型效果与阈值校准尚未验证。控制台和输入采集适配器仍属后续开发，详见 [CLOUD_TASK.md](CLOUD_TASK.md)。
+当前提供三个规则、官方 SDK 适配、超时与 SDK 重试、响应校验、SQLite 元数据存储、JSON/JSONL 评测闭环及模型/规则版本对比。评测器通过固定合成预测验证，并已完成首次小规模真实调用评测；生产效果和阈值校准尚未验证。控制台和输入采集适配器仍属后续开发，详见 [CLOUD_TASK.md](CLOUD_TASK.md)。
 
 本地交付证据与未覆盖项见 [docs/validation.md](docs/validation.md)。仓库提供22.16/24的离线 CI 配置，尚未在远端运行。
 
@@ -44,7 +44,7 @@ node dist/cli.js evaluations --limit 20
 
 完整样本格式、指标分母、版本对比及显式 live 上限见 [评测说明](docs/evaluation.md)。默认评测与合成预测评分无需 key 或数据库；评测指标保留错误接受、unknown/review 和调用失败，零分母为 null。真实评测必须显式选择 `--live --max-samples N --max-requests N`，请求预算包含 SDK 最坏情况下的重试，不代表费用限额。
 
-另提供每条规则 12 项、共 36 个原创合成标注案例。首次真实验证按 [准备记录](docs/readiness.md) 先做受限冒烟，再决定是否运行全套；[当前记录](docs/live-validation.md) 已确认 HTTP 200，并修复代理和浮点边界问题，尚未完成三规则冒烟或质量评测。
+另提供每条规则 12 项、共 36 个原创合成标注案例。[首次实测](docs/evaluation-results/2026-10-19-jev-1.13.0/README.md) 已完成三规则技术冒烟及全部案例尝试：34 项可计分、2 项排序响应校验失败。报告保留错误率与各自分母，不据此推断生产准确率。
 
 真实调用需要在服务进程环境中安全配置 `TYPESAFE_API_KEY`，然后去掉 `--dry-run`。不要把 key 放进命令参数、对话、配置示例或版本库。`.env.example` 仅供参考；程序不会自动加载 `.env`。`doctor` 只报告 key 是否存在，不验证有效性。
 
