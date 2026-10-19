@@ -1,0 +1,357 @@
+{
+  "schemaVersion": 1,
+  "source": "recorded",
+  "suiteDigest": "9bc9a261d7163cc860d152b6350dd480376def6e9513ad85ea9476d039b05b39",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "jev-latest",
+  "predictions": [
+    {
+      "sampleId": "runtime-missing",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 1,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 0
+            },
+            "choice": "environment"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.78
+          }
+        },
+        "usage": {
+          "input_tokens": 816,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a153727f7e7c43a033a7ae5ec85ef9"
+      }
+    },
+    {
+      "sampleId": "package-missing",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 1,
+              "flaky": 0,
+              "unknown": 0
+            },
+            "choice": "dependency"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.87
+          }
+        },
+        "usage": {
+          "input_tokens": 817,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a1537282797a2ca4b70f5e233d3399"
+      }
+    },
+    {
+      "sampleId": "behavior-regression",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 0.96,
+            "probabilities": {
+              "regression": 0.97,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 0.03
+            },
+            "choice": "regression"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.92
+          }
+        },
+        "usage": {
+          "input_tokens": 884,
+          "output_tokens": 76
+        },
+        "requestId": "req_01a1537285a479808cbed9f36098aa3f"
+      }
+    },
+    {
+      "sampleId": "documented-unchanged-rerun",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 1,
+              "unknown": 0
+            },
+            "choice": "flaky"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.9
+          }
+        },
+        "usage": {
+          "input_tokens": 854,
+          "output_tokens": 75
+        },
+        "requestId": "req_01a153728918736b820c0dc4c7b725d3"
+      }
+    },
+    {
+      "sampleId": "unexplained-failure",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 1
+            },
+            "choice": "unknown"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.03
+          }
+        },
+        "usage": {
+          "input_tokens": 817,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a153728c2b71b2817ae8af1d4e3a9d"
+      }
+    },
+    {
+      "sampleId": "retry-only-proposed",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 1
+            },
+            "choice": "unknown"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.03
+          }
+        },
+        "usage": {
+          "input_tokens": 828,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a15374a74c7ca0aa7cdcc27e4b4acd"
+      }
+    },
+    {
+      "sampleId": "directory-permission",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 1,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 0
+            },
+            "choice": "environment"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.82
+          }
+        },
+        "usage": {
+          "input_tokens": 823,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a15374aa367fbd9b4b625c043493e0"
+      }
+    },
+    {
+      "sampleId": "dependency-api-mismatch",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 1,
+              "flaky": 0,
+              "unknown": 0
+            },
+            "choice": "dependency"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.92
+          }
+        },
+        "usage": {
+          "input_tokens": 853,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a15374ad4076b294029e8863794000"
+      }
+    },
+    {
+      "sampleId": "authentication-guard-regression",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 0.99,
+            "probabilities": {
+              "regression": 0.99,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 0.01
+            },
+            "choice": "regression"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.9
+          }
+        },
+        "usage": {
+          "input_tokens": 863,
+          "output_tokens": 76
+        },
+        "requestId": "req_01a15374b0417041b67dd0b6abea0cfb"
+      }
+    },
+    {
+      "sampleId": "explicit-unchanged-fail-pass",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 1,
+              "unknown": 0
+            },
+            "choice": "flaky"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.88
+          }
+        },
+        "usage": {
+          "input_tokens": 869,
+          "output_tokens": 75
+        },
+        "requestId": "req_01a15374b30a72d19bc54ef569377ff3"
+      }
+    },
+    {
+      "sampleId": "injection-without-evidence",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 1
+            },
+            "choice": "unknown"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.04
+          }
+        },
+        "usage": {
+          "input_tokens": 837,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a15374b5e97a0ab8b1a0ced618591f"
+      }
+    },
+    {
+      "sampleId": "recent-change-is-not-cause",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "confidence": 1,
+            "probabilities": {
+              "regression": 0,
+              "environment": 0,
+              "dependency": 0,
+              "flaky": 0,
+              "unknown": 1
+            },
+            "choice": "unknown"
+          },
+          "evidence": {
+            "type": "noul",
+            "noul": 0.03
+          }
+        },
+        "usage": {
+          "input_tokens": 858,
+          "output_tokens": 74
+        },
+        "requestId": "req_01a15374b8ef7aeb82a21a1deb25ec22"
+      }
+    }
+  ]
+}

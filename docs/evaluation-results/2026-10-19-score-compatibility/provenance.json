@@ -1,0 +1,229 @@
+{
+  "date": "2026-10-19",
+  "operation": "offline replay",
+  "networkAttempts": 0,
+  "newApiUsage": 0,
+  "sourceCodeCommit": "7159583",
+  "sourceBenchmark": "../2026-10-19-jev-1.13.0/",
+  "requestedModel": "jev-latest",
+  "actualModel": "jev-1.13.0",
+  "policy": "rounded-2dp (local hypothesis, mandatory review)",
+  "captures": [
+    {
+      "attempt": 1,
+      "recipeId": "rank-candidates",
+      "sampleId": "offline-instructions",
+      "sha256": "d8639e76e12ad401991611c52d5aaeeb52ce1fa483f4fff31cc1741f9b99e704"
+    },
+    {
+      "attempt": 2,
+      "recipeId": "verify-claims",
+      "sampleId": "completed-test-run",
+      "sha256": "bc1e71b1197ebcd0dba3d7cc1bd4a83404961e4a63c5e52ed4ba0ad021aa01bb"
+    },
+    {
+      "attempt": 3,
+      "recipeId": "triage-failure",
+      "sampleId": "runtime-missing",
+      "sha256": "b1e15974bbfd481191aa53b4039e8758902477b5ee6a05ac9606829fc7db8159"
+    },
+    {
+      "attempt": 4,
+      "recipeId": "rank-candidates",
+      "sampleId": "validator-definition",
+      "sha256": "f499cfab73818a04ea8a29ac115ce9fa9b30d33f54fda50a78fa4f29d393491b"
+    },
+    {
+      "attempt": 5,
+      "recipeId": "verify-claims",
+      "sampleId": "explicit-test-failure",
+      "sha256": "e6ed5f2c3585d452c31ef2c251149dba46bec49380988d1bb523bdc2cd18df3a"
+    },
+    {
+      "attempt": 6,
+      "recipeId": "triage-failure",
+      "sampleId": "package-missing",
+      "sha256": "c82ecaca60f1a9b2528045b6ea6595bbc60cc21cf50e8f2eff06833d748d480e"
+    },
+    {
+      "attempt": 7,
+      "recipeId": "rank-candidates",
+      "sampleId": "buggy-code-is-relevant",
+      "sha256": "d01c6dbd0ea69ff3a72340ad18c8749854cae03eb310132d56c4507e47da3b6d"
+    },
+    {
+      "attempt": 8,
+      "recipeId": "verify-claims",
+      "sampleId": "empty-evidence",
+      "sha256": "74793fbf094f8624ad2ce099adf492162af05965657d292d8045f0217ca2f156"
+    },
+    {
+      "attempt": 9,
+      "recipeId": "triage-failure",
+      "sampleId": "behavior-regression",
+      "sha256": "145913e4d1ee8188dff667173b4b824d9ef58f54fcf8b6540f807dd0b940c055"
+    },
+    {
+      "attempt": 10,
+      "recipeId": "rank-candidates",
+      "sampleId": "name-only-distractor",
+      "sha256": "e544fb1c5a547009f0a8dc8713cec8592dcc710a0e52df0d300c52e1f90f2931"
+    },
+    {
+      "attempt": 11,
+      "recipeId": "verify-claims",
+      "sampleId": "plan-is-not-result",
+      "sha256": "27dd35e7626657870a7ca202b1c77e7bc367a4d540091d165dd5714fcd025e4e"
+    },
+    {
+      "attempt": 12,
+      "recipeId": "triage-failure",
+      "sampleId": "documented-unchanged-rerun",
+      "sha256": "1f826da0b829d59750ad4c8ab61a6d996aaa7cef9d73788ed60b1f203a65cd14"
+    },
+    {
+      "attempt": 13,
+      "recipeId": "rank-candidates",
+      "sampleId": "cancellation-two-components",
+      "sha256": "882f2da8c9a62c72baa39aa79107e683e7786f7b9a6f355a7592750dc2bbc5d9"
+    },
+    {
+      "attempt": 14,
+      "recipeId": "verify-claims",
+      "sampleId": "skips-are-not-executed",
+      "sha256": "2e47df479965009aa3e58652b3e153b1c6e3c952dcea0f134faf50a46b80433a"
+    },
+    {
+      "attempt": 15,
+      "recipeId": "triage-failure",
+      "sampleId": "unexplained-failure",
+      "sha256": "1bdcec8ea87e9d50a58bdcaf9e08d4d6aec89a73ceb7c517f60c2a6b6931f4af"
+    },
+    {
+      "attempt": 16,
+      "recipeId": "rank-candidates",
+      "sampleId": "migration-lock-order",
+      "sha256": "e270bc65861b6fe90b4053922186e00f9a4824b88e527f37737df4ac84f55766"
+    },
+    {
+      "attempt": 17,
+      "recipeId": "verify-claims",
+      "sampleId": "narrow-passing-claim",
+      "sha256": "9dcae689c331647009923fc298b3e8a3c533b5bcc81ed56e66f0071c18960c1c"
+    },
+    {
+      "attempt": 18,
+      "recipeId": "triage-failure",
+      "sampleId": "retry-only-proposed",
+      "sha256": "915637c916ed4cb539e43df792b5fafdc806983e540a15a4199c94214119c9f5"
+    },
+    {
+      "attempt": 19,
+      "recipeId": "rank-candidates",
+      "sampleId": "prompt-injection-candidate",
+      "sha256": "344aaf54e27a5ff1c550950eca24e80dd559169bf9805a449e8fbbc02376ea1e"
+    },
+    {
+      "attempt": 20,
+      "recipeId": "verify-claims",
+      "sampleId": "revision-mismatch",
+      "sha256": "8c999141e93e0ce0329be60d2f1411743ba370b038f0712399682f92862971dc"
+    },
+    {
+      "attempt": 21,
+      "recipeId": "triage-failure",
+      "sampleId": "directory-permission",
+      "sha256": "3d3a70175ebde4a62bd50629ca90c3ba32a5e4547d597257207d0fa3c9e4158b"
+    },
+    {
+      "attempt": 22,
+      "recipeId": "rank-candidates",
+      "sampleId": "sqlite-privacy",
+      "sha256": "fc461fddb107fdf4f54cf4d6c98678e6586202f6d1edcbe490939a5d332644c9"
+    },
+    {
+      "attempt": 23,
+      "recipeId": "verify-claims",
+      "sampleId": "protocol-content-contradiction",
+      "sha256": "5130d09d349ec729efc5c184ca0412ab3656b56804cac9fda97d8b318abc162f"
+    },
+    {
+      "attempt": 24,
+      "recipeId": "triage-failure",
+      "sampleId": "dependency-api-mismatch",
+      "sha256": "a11bf673cad1f12dd86d9222083ec5cdec22dd2fc911093d26d2825e51daadda"
+    },
+    {
+      "attempt": 25,
+      "recipeId": "rank-candidates",
+      "sampleId": "stdout-entrypoint",
+      "sha256": "239bc4dbf689f838de16b4333c069f9e6eb78ae4fb53d6696dd3506341931955"
+    },
+    {
+      "attempt": 26,
+      "recipeId": "verify-claims",
+      "sampleId": "review-count",
+      "sha256": "4af569c8019942f1ed721b1dcb3876c5151b20052f590fcd2e23fa141d7fe2a1"
+    },
+    {
+      "attempt": 27,
+      "recipeId": "triage-failure",
+      "sampleId": "authentication-guard-regression",
+      "sha256": "24d0c323ab44b7566f6cbd43ced5ad7062d3ce14675b9cefc30c67c19089ff42"
+    },
+    {
+      "attempt": 28,
+      "recipeId": "rank-candidates",
+      "sampleId": "timeout-includes-retries",
+      "sha256": "325b13f38377ebe2a113e5983861aa6b6ce7631d47e4e581a4171685cccee41b"
+    },
+    {
+      "attempt": 29,
+      "recipeId": "verify-claims",
+      "sampleId": "injected-intent",
+      "sha256": "6d37d00834eaba24920a3511552110e67d3b60ca5baebf3e40f68bb366fc3d78"
+    },
+    {
+      "attempt": 30,
+      "recipeId": "triage-failure",
+      "sampleId": "explicit-unchanged-fail-pass",
+      "sha256": "86fe7f6f91a3e287228c2e72b97f165b383d01472093148ae6d43b59349dfd23"
+    },
+    {
+      "attempt": 31,
+      "recipeId": "rank-candidates",
+      "sampleId": "chinese-task",
+      "sha256": "3a7eb8116d53ac4a1f89421bb10654a5b3e9eb251b4adb669b2954fb9a413e38"
+    },
+    {
+      "attempt": 32,
+      "recipeId": "verify-claims",
+      "sampleId": "chinese-completion",
+      "sha256": "5cfaa9f6fd861f21e108ea210b0d0e6e9279ed07947798a50b1c62155e319b6a"
+    },
+    {
+      "attempt": 33,
+      "recipeId": "triage-failure",
+      "sampleId": "injection-without-evidence",
+      "sha256": "fc9ad29b6ce8186deefff910479ddaf3b34d186620b9869a444e2826d6917dd1"
+    },
+    {
+      "attempt": 34,
+      "recipeId": "rank-candidates",
+      "sampleId": "check-command-and-definition",
+      "sha256": "cedf51702a75735e302617ac4492b31a5b46e6a1dde42e3f917f73f20879fe67"
+    },
+    {
+      "attempt": 35,
+      "recipeId": "verify-claims",
+      "sampleId": "reported-write-error",
+      "sha256": "d9962fe0d39bcbcdbbee9233ea2e941c70a2d109def3bfce13f68b5212b3e23e"
+    },
+    {
+      "attempt": 36,
+      "recipeId": "triage-failure",
+      "sampleId": "recent-change-is-not-cause",
+      "sha256": "e9ca6243162e4ec3786c81867580d6bd8ca8922f3c72c63f62c15928326e696d"
+    }
+  ]
+}

@@ -48,7 +48,7 @@ function invalidInput(recipe: Recipe, input: unknown): void {
 
 test("registry exposes exactly three versioned recipes and rejects unknown ids", () => {
   assert.deepEqual(listRecipes().map((recipe) => [recipe.id, recipe.version]), [
-    ["rank-candidates", "1.0.0"], ["verify-claims", "1.0.0"], ["triage-failure", "1.0.0"],
+    ["rank-candidates", "1.1.0"], ["verify-claims", "1.0.0"], ["triage-failure", "1.0.0"],
   ]);
   assert.throws(() => getRecipe("made-up-recipe"), (error: unknown) => error instanceof JevError && error.code === "INVALID_INPUT");
 });

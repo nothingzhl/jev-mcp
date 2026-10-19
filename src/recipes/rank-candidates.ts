@@ -4,7 +4,7 @@ import { JevError } from "../core/errors.js";
 import { answerOf, assertUnitInterval, parseInput, uniqueIds, untrustedInputNotice } from "./common.js";
 
 const id = "rank-candidates";
-const version = "1.0.0";
+const version = "1.1.0";
 
 export const inputSchema = z.object({
   task: z.string().trim().min(1).max(4_000),
@@ -53,7 +53,9 @@ export function interpret(inputValue: unknown, response: EvaluationResponse) {
       title: candidate.title,
       score: judgment.score / (rubric.length - 1),
       confidence: judgment.confidence,
-      requiresReview: judgment.confidence < thresholds.minimumConfidence,
+      requiresReview: judgment.consistency !== undefined || judgment.confidence < thresholds.minimumConfidence,
+      reviewReason: judgment.consistency !== undefined ? "score_rounding"
+        : judgment.confidence < thresholds.minimumConfidence ? "low_confidence" : null,
       judgment,
       originalIndex: index,
     };

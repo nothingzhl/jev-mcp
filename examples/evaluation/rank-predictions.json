@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "synthetic",
   "suiteDigest": "df6e8f882e5157bf03d956fcdef14977795cd4c1d9def9c18c4b499c521bd2c3",
-  "recipeVersion": "1.0.0",
+  "recipeVersion": "1.1.0",
   "requestedModel": "synthetic-a",
   "predictions": [
     {

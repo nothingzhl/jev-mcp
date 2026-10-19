@@ -10,8 +10,18 @@ export type Question =
 
 export type Answer =
   | { type: "choice"; choice: string; probabilities: Record<string, number>; confidence: number }
-  | { type: "score"; score: number; legend: Record<string, Content>; probabilities: Record<string, number>; confidence: number }
+  | { type: "score"; score: number; legend: Record<string, Content>; probabilities: Record<string, number>; confidence: number;
+      consistency?: ScoreConsistency }
   | { type: "noul"; noul: number };
+
+// Local validation metadata, never an asserted upstream precision guarantee.
+export type ScoreConsistency = {
+  policy: "rounded-2dp";
+  requiresReview: true;
+  reportedExpectation: number;
+  minimumExpectation: number;
+  maximumExpectation: number;
+};
 
 export interface EvaluationRequest {
   model: string;

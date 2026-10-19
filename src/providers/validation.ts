@@ -1,5 +1,5 @@
 import { isDeepStrictEqual } from "node:util";
-import type { Answer, Content, EvaluationRequest, EvaluationResponse, Question } from "../core/contracts.js";
+import type { Answer, Content, EvaluationRequest, EvaluationResponse, Question, ScoreConsistency } from "../core/contracts.js";
 import { JevError } from "../core/errors.js";
 
 const invalid = (): never => {
@@ -27,6 +27,36 @@ function distribution(value: unknown, keys: string[]): Record<string, number> {
   // The API may round decimal probabilities; accept only a small rounding difference.
   if (Math.abs(entries.reduce((total, [, p]) => total + p, 0) - 1) > 0.001) invalid();
   return Object.fromEntries(entries);
+}
+
+function roundedScoreConsistency(score: number, probabilities: number[], expected: number): ScoreConsistency {
+  const epsilon = 1e-12;
+  // This is a local compatibility profile, not an API precision contract. Only
+  // cent-grid values qualify; extra precision must satisfy the original check.
+  if ([score, ...probabilities].some(value => Math.abs(value - Math.round(value * 100) / 100) > epsilon)) invalid();
+  const lower = probabilities.map(p => Math.max(0, p - 0.005));
+  const upper = probabilities.map(p => Math.min(1, p + 0.005));
+  const remaining = 1 - lower.reduce((sum, p) => sum + p, 0);
+  if (remaining < -epsilon || upper.reduce((sum, p) => sum + p, 0) < 1 - epsilon) invalid();
+  // Tight extrema under sum(q)=1: fill each probability interval from lowest
+  // level upward for the minimum, and highest downward for the maximum.
+  const extremum = (descending: boolean) => {
+    let mass = Math.max(0, remaining);
+    let value = lower.reduce((sum, p, level) => sum + level * p, 0);
+    for (let i = 0; i < lower.length; i++) {
+      const level = descending ? lower.length - 1 - i : i;
+      const added = Math.min(mass, upper[level]! - lower[level]!);
+      value += level * added;
+      mass = Math.max(0, mass - added);
+    }
+    if (mass > epsilon) invalid();
+    return value;
+  };
+  const minimumExpectation = extremum(false);
+  const maximumExpectation = extremum(true);
+  if (score + 0.005 < minimumExpectation - epsilon || score - 0.005 > maximumExpectation + epsilon) invalid();
+  return { policy: "rounded-2dp", requiresReview: true, reportedExpectation: expected,
+    minimumExpectation, maximumExpectation };
 }
 
 function answer(value: unknown, question: Question): Answer {
@@ -59,8 +89,10 @@ function answer(value: unknown, question: Question): Answer {
   const expected = keys.reduce((total, key) => total + Number(key) * probabilities[key]!, 0);
   // Keep the inclusive 0.01 rounding tolerance despite binary floating-point
   // subtraction (e.g. 3.91 - 3.92 is -0.010000000000000231).
-  if (Math.abs(score - expected) > 0.01 + 1e-12) invalid();
-  return { type: "score", score, legend, probabilities, confidence };
+  const consistency = Math.abs(score - expected) > 0.01 + 1e-12
+    ? roundedScoreConsistency(score, keys.map(key => probabilities[key]!), expected) : undefined;
+  // Recompute local metadata; never trust annotations supplied in the response.
+  return { type: "score", score, legend, probabilities, confidence, ...(consistency ? { consistency } : {}) };
 }
 
 function tokenCount(value: unknown): number | null {

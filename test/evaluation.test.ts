@@ -17,6 +17,28 @@ function offline(model = "synthetic-a") {
     provider() { throw new Error("must not construct a provider"); }, store() { throw new Error("must not open SQLite"); } });
 }
 
+test("all 36 captured benchmark responses replay offline with conservative Score review and unchanged other metrics", () => {
+  const results = new URL("../docs/evaluation-results/2026-10-19-score-compatibility/", import.meta.url);
+  const files = [["rank.json", "rank"], ["verify.json", "verify"], ["triage.jsonl", "triage"]] as const;
+  for (const [suiteFile, prefix] of files) {
+    const labeled = parseSuiteText(readFileSync(new URL(`../examples/benchmarks/${suiteFile}`, import.meta.url), "utf8"));
+    const predictions: unknown = JSON.parse(readFileSync(new URL(`${prefix}-predictions.json`, results), "utf8"));
+    const expected = parseReport(JSON.parse(readFileSync(new URL(`${labeled.recipeId}.json`, results), "utf8")));
+    const actual = evaluatePredictions(labeled, predictions, offline("jev-latest"));
+    assert.equal(actual.source, "recorded");
+    assert.equal(actual.evaluatedSamples, 12);
+    assert.equal(actual.failedSamples, 0);
+    assert.equal(actual.recipeVersion, expected.recipeVersion);
+    assert.deepEqual(actual.actualModels, ["jev-1.13.0"]);
+    assert.deepEqual(actual.metrics, expected.metrics);
+    if (labeled.recipeId === "rank-candidates") {
+      assert.deepEqual(actual.metrics.keyItemHitRate, metric(14, 14));
+      assert.deepEqual(actual.metrics.reviewRate, metric(11, 37));
+      assert.deepEqual(actual.metrics.topKReviewRate, metric(6, 14));
+    }
+  }
+});
+
 test("JSON/JSONL suites validate exact labels, unique IDs, bounded inputs and versions without side effects", () => {
   const rank = suite("rank.json");
   const { samples, ...head } = rank;

@@ -43,6 +43,7 @@ dry run 仅校验和返回请求计划，不联网、不写库，不返回模型
 ## 解读结果与下一步
 
 - 排序保留所有候选及稳定并列顺序。高分表示调查相关性；有问题的代码也可能非常相关。`requiresReview` 不得被隐藏，未入前几名的候选也不是已证伪。
+- 排序规则 1.1.0 的 `reviewReason=score_rounding` 表示 Score 仅在本地两位小数舍入假设下兼容，并非官方精度保证。即使 confidence 很高也必须复核，保留 judgment.consistency 及原始分数/概率；不要把此标记覆盖成自动通过。
 - 核对证据时保留 `accepted`、`rejected`、`review` 的区别。空证据、insufficient 和低置信必须待复核；accepted 也是基于当前片段的模型判断，需要真实测试/运行证据支撑完成声明。
 - 归类保留 `unknown` 和 `requiresReview`。不得把 unknown 猜成具体原因，也不得依据类别自动重试、改配置或回滚。flaky 需要同命令在代码、输入和环境不变时失败后重跑通过的实际记录。
 - 记录规则版本、请求模型、实际模型和可用的 request ID。概率不是事实或权限；不要把离线测试、真实 API 可达、模型质量评测混为一谈。

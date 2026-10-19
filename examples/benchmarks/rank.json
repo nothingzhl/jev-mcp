@@ -3,7 +3,7 @@
   "suite": "readiness-rank",
   "suiteVersion": "1.0.0",
   "recipeId": "rank-candidates",
-  "recipeVersion": "1.0.0",
+  "recipeVersion": "1.1.0",
   "samples": [
     {
       "id": "offline-instructions",

@@ -26,6 +26,10 @@ flowchart TD
 
 排序使用 Score 的期望等级归一化到 0..1，代码稳定排序并保留全部候选。证据核对包含 insufficient，空证据不得接受；失败归类包含 unknown，建议不触发命令执行或重试。每条规则的版本、阈值与标准一起审查。
 
+Score 校验先保留原有加权值差不超过 0.01 的路径（浮点 epsilon 为 1e-12）。超出时，仅对分数和所有概率均位于 0.01 网格的响应尝试本地 `rounded-2dp` 兼容策略：每个概率的舍入前区间为 `[max(0,p-0.005), min(1,p+0.005)]`，约束其和为 1，求加权值的最小/最大值，再检查与分数的 `±0.005` 区间是否相交。原有类型、范围、概率和与 legend 校验仍适用。没有可行分布或不符合精度条件时返回 INVALID_RESPONSE。
+
+此策略未被官方精度契约确认。新增兼容回答保留上游分数、概率、confidence，附加本地 `consistency`（policy、requiresReview、reportedExpectation、minimumExpectation、maximumExpectation）。这些字段在每次校验时重新计算，不信任响应传入的注解。排序规则 1.1.0 对此强制 `requiresReview=true`、`reviewReason=score_rounding`；普通低置信使用 `low_confidence`，无需复核时为 null。原因优先展示舍入问题，原始 confidence 仍可判断是否同时低置信。阈值、rubric 与排序算法保持原值，其他规则仍为 1.0.0。
+
 ## 可靠性
 
 SDK 负责单层重试，AbortSignal 管理整体评估预算；并发/排队由服务限制。响应错误、传输失败、鉴权失败、超时、存储失败分别映射为固定安全错误。上游成功后保存元数据失败会返回 STORAGE，不自动重新发起推理。
