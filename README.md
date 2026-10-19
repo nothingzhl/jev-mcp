@@ -1,5 +1,9 @@
 # jev-mcp
 
+npm 发布包名为 `@nothingzhl/jev-mcp`，当前版本 `0.1.0` 尚未发布。发布后可用 `npx --yes --package @nothingzhl/jev-mcp@0.1.0 jev install-codex` 注册到 Codex；发布准备与认证步骤见 [npm 发布说明](docs/npm-publishing.md)。代码采用 [Apache-2.0 许可证](LICENSE)。
+
+维护者完成首次发布并配置 npm Trusted Publisher 后，推送匹配版本的 `v*` 标签即可由 GitHub Actions 自动检查、构建并发布；无需保存 npm token，具体配置见发布说明。
+
 为编码代理提供 TypeSafe Jev 判断能力的本地工具骨架。TypeScript 模块化单体，共用版本化规则和执行服务，提供 CLI 与 stdio MCP。Jev 提供判断和概率，本地代码负责排序、阈值、错误处理和存储。
 
 当前提供三个规则、官方 SDK 适配、超时与 SDK 重试、响应校验、SQLite 元数据存储、JSON/JSONL 评测闭环及模型/规则版本对比。评测器通过固定合成预测验证，并已完成首次小规模真实调用评测；生产效果和阈值校准尚未验证。控制台和输入采集适配器仍属后续开发，详见 [CLOUD_TASK.md](CLOUD_TASK.md)。
@@ -69,7 +73,7 @@ node dist/cli.js evaluations --limit 20
 
 在源码目录执行 `npm run setup:codex`，即可安装依赖、构建并注册到 Codex 用户配置；用 `-- --dry-run` 预览，或 `-- --config /absolute/path/config.toml` 指定目标。已有相同注册会跳过，冲突配置会保留并报错。命令不保存 key 值，也不调用模型。
 
-也可用 `npm run pack:local` 生成 `.data/jev-mcp-0.1.0.tgz`，复制到目标机器后执行 `npm exec --yes --package ./jev-mcp-0.1.0.tgz -- jev install-codex`。这是本地安装包，尚未发布到 npm；完整选项见[接入指南](docs/codex-quickstart.md)。
+也可用 `npm run pack:local` 生成 `.data/nothingzhl-jev-mcp-0.1.0.tgz`，复制到目标机器后执行 `npm exec --yes --package ./nothingzhl-jev-mcp-0.1.0.tgz -- jev install-codex`。这是本地安装包，尚未发布到 npm；完整选项见[接入指南](docs/codex-quickstart.md)。
 
 构建后使用 `node dist/mcp.js` 启动，或使用 `node dist/cli.js serve`。stdout 仅承载 MCP 协议；开发时可用 `npm run mcp`，客户端正式配置应直接启动 Node，避免 npm 输出干扰协议。
 

@@ -18,6 +18,9 @@
 - 一键安装：以隔离 config.toml 实际执行两次 `npm --cache /tmp/jev-npm-cache run setup:codex -- --config <隔离路径>`，均完成 npm ci 与构建；第一次 installed，第二次 already-installed，配置字节及 mtime 不变。缓存使用 /tmp 是因为本云环境默认 npm 缓存目录不可写，没有改 HOME 或 npm 全局设置。
 - 本地分发：pack:local 产物 `.data/jev-mcp-0.1.0.tgz` 共 73 个白名单文件，SHA256 为 `d1e3d9359791aaea9477a1620ddc267249283e3b8daf06b20f89652bd8047a8f`；不包含 .data、SQLite、源码测试或评测捕获。将最终包复制到独立路径后，用实际 npm exec 安装并注册到另一隔离配置；其他 server 原字节保留。官方 MCP Client 从包内编译入口发现 4 个工具，完成三个 dry run 和缺 key 错误检查，未创建 DB、无协议错误、无模型调用。Codex CLI 使用仅命令行覆盖的 mcp get 验证该表可解析，未写用户的 Codex 设置。
 - 环境草稿：尝试保存 NPM_CONFIG_CACHE=/tmp/jev-npm-cache 的建议时，自动审批返回 ASB rejected，未给出具体原因、未确认草稿保存。本轮使用上述已验证的命令级缓存参数完成安装，未重复尝试被拒绝的变更。
+- npm 发布准备：按维护者选择改名为 `@nothingzhl/jev-mcp@0.1.0`，移除 private，配置 public registry/access、仓库元数据和 Apache-2.0；LICENSE 来自 Apache 官方全文。原名 `jev-mcp` 查询已有 0.5.1，scope 包查询返回 E404，均不构成当前账号发布权限的证明。`TYPESAFE_API_KEY= npm --cache /tmp/jev-npm-cache run release:check` 成功执行发布生命周期：类型检查、90 项测试全部通过、构建、demo 和 publish dry run；npm 提示实际发布需要登录，未上传。
+- 新 scope 安装包：`.data/nothingzhl-jev-mcp-0.1.0.tgz` 共 78 个白名单文件，SHA256 `d595fdc55233ac06303d53791b854490ff5454863778e0e4b6f0a110ec285c05`；确认包含正式 LICENSE、三个合成输入和接入/发布说明，无额外路径。复制到新临时路径后使用 npm exec 实际安装及隔离注册；官方 MCP Client 发现 4 个工具，三个规则 dry run、缺 key 错误和 Codex CLI 配置解析均通过，其他 server 保留，无数据库、模型调用或用户全局配置修改。本项为后续新包证据，前述旧包及其 hash 保留为历史记录。
+- GitHub 自动发布：新增 publish.yml 并核对 npm 官方 Trusted Publishing 文档（npm >=11.5.1、Node >=22.14、GitHub 托管 runner、id-token: write）。实际查询 checkout/setup-node 的 v7 tag 并固定对应 commit；actionlint 1.7.7 官方归档经发布方 SHA256 清单验证后执行，工作流 lint 通过（未启用额外 shellcheck）。从 YAML 提取真实 Node 校验步骤，本地验证匹配标签成功，拒绝标签不符、branch ref、预发布标签/版本、两个锁文件版本不同步、错误包名、private 包及非预期 registry。再次执行 release:check：90 项离线测试全部通过、类型检查/构建/demo/publish dry run 成功，0 新模型调用。没有推送标签、执行远端 Actions、配置 npm 账号或实际上传；OIDC 和首个远端发布仍待维护者按发布说明完成。
 
 ## 评测与存储覆盖
 

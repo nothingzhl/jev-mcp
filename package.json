@@ -1,9 +1,17 @@
 {
-  "name": "jev-mcp",
+  "name": "@nothingzhl/jev-mcp",
   "version": "0.1.0",
-  "private": true,
-  "files": ["dist", "README.md", "docs/codex-quickstart.md", "examples/codex-config.toml"],
-  "description": "Local MCP and CLI scaffolding for versioned TypeSafe Jev judgments",
+  "files": [
+    "dist",
+    "README.md",
+    "docs/codex-quickstart.md",
+    "examples/codex-config.toml",
+    "docs/npm-publishing.md",
+    "examples/rank-candidates.json",
+    "examples/verify-claims.json",
+    "examples/triage-failure.json"
+  ],
+  "description": "Versioned TypeSafe Jev judgments for Codex via a local MCP server and CLI",
   "type": "module",
   "engines": {
     "node": ">=22.16.0"
@@ -22,7 +30,9 @@
     "setup:codex": "node scripts/setup-codex.mjs",
     "prepack": "npm run build",
     "pack:local": "node -e \"require('node:fs').mkdirSync('.data', { recursive: true })\" && npm pack --pack-destination .data",
-    "demo": "tsx src/cli.ts run rank-candidates --input examples/rank-candidates.json --dry-run"
+    "demo": "tsx src/cli.ts run rank-candidates --input examples/rank-candidates.json --dry-run",
+    "prepublishOnly": "npm run check && npm run demo",
+    "release:check": "npm publish --dry-run"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.1",
@@ -34,5 +44,25 @@
     "@types/node": "22.20.5",
     "tsx": "4.23.15",
     "typescript": "7.0.2"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nothingzhl/jev-mcp.git"
+  },
+  "homepage": "https://github.com/nothingzhl/jev-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/nothingzhl/jev-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "codex",
+    "jev",
+    "typesafe",
+    "cli"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

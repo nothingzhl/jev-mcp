@@ -18,6 +18,8 @@
 - 当前 rank-candidates 1.2.0 增加 Score 概率和的有界舍入兼容并强制 review；Choice 保持原校验。两批历史 72 项离线重放均可计分，第二批排序关键项 16/16、topK review 4/16；原报告与数据库不改写，见 docs/evaluation-results/2026-10-19-probability-compatibility/README.md。本次无新增调用，官方精度仍未确认。
 - CLI mcp-config 可生成本机绝对路径的 Codex TOML，仅转发应用、代理与 CA 变量名，不写设置/凭证值；首次接入和 dry run 验收见 docs/codex-quickstart.md。用户客户端注册状态另行确认。
 - 显式安装入口 setup:codex 负责 npm ci、构建和 install-codex 注册；注册使用 TOML 校验、文件锁、原子写入，保留已有配置和注释、重复跳过、冲突拒绝。pack:local 生成编译版本地 tgz，不发布 npm；测试和本任务验收仅写隔离配置，不改用户全局配置。
+- npm 发布准备已改为 @nothingzhl/jev-mcp、Apache-2.0，发布前自动执行 check/demo；release:check 只做 publish dry run。scope 本地包已重新验证，尚未实际发布，账号权限与后续流程见 docs/npm-publishing.md。
+- 自动发布工作流 .github/workflows/publish.yml 已加入：v* 标签触发、稳定版本及锁文件一致性校验、固定 action commit、Node 24/npm 11.9.0、OIDC 无 npm token 发布。本地 actionlint、发布检查及版本拒绝路径已验证；npm Trusted Publisher 绑定和首次远端发布仍待完成。
 
 先执行：
 

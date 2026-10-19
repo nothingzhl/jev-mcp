@@ -24,13 +24,15 @@ npm run setup:codex
 npm run pack:local
 ```
 
-产物在 `.data/jev-mcp-0.1.0.tgz`，不包含密钥、SQLite、测试或评测响应。将文件放到目标机器后，可直接安装运行注册命令：
+产物在 `.data/nothingzhl-jev-mcp-0.1.0.tgz`，不包含密钥、SQLite、测试或评测响应。将文件放到目标机器后，可直接安装运行注册命令：
 
 ```sh
-npm exec --yes --package ./jev-mcp-0.1.0.tgz -- jev install-codex
+npm exec --yes --package ./nothingzhl-jev-mcp-0.1.0.tgz -- jev install-codex
 ```
 
 这会下载运行依赖并注册该包的编译入口，无需目标机器安装 TypeScript 或手工构建。npm exec 使用缓存内的安装路径；清理或迁移缓存后需重新注册。原配置指向其他安装位置时会保留并报冲突，应先审查并移除旧 Jev 表，再重新注册。命令不会上传或发布本地包。
+
+发布到 npm 后，可在目标机器使用 `npx --yes --package @nothingzhl/jev-mcp@0.1.0 jev install-codex`，无需复制 tarball。当前尚未发布，维护者流程见 [npm 发布说明](npm-publishing.md)。
 
 ## 只打印配置
 

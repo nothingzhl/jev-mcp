@@ -1,0 +1,59 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'nothingzhl/jev-mcp'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      TYPESAFE_API_KEY: ''
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Validate release tag and package metadata
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+          const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
+          assert.equal(process.env.GITHUB_REF_TYPE, 'tag', 'Release requires a tag.');
+          assert.equal(pkg.name, '@nothingzhl/jev-mcp', 'Unexpected package name.');
+          assert.match(pkg.version, /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/, 'Only stable versions are published to latest.');
+          assert.equal(process.env.GITHUB_REF_NAME, `v${pkg.version}`, 'Tag must match package.json version.');
+          assert.equal(lock.name, pkg.name, 'Lockfile package name differs.');
+          assert.equal(lock.version, pkg.version, 'Lockfile version differs.');
+          assert.equal(lock.packages[''].name, pkg.name, 'Lockfile root package name differs.');
+          assert.equal(lock.packages[''].version, pkg.version, 'Lockfile root version differs.');
+          assert.ok(!pkg.private, 'Package must be publishable.');
+          assert.equal(pkg.publishConfig?.registry, 'https://registry.npmjs.org/', 'Unexpected registry.');
+          assert.equal(pkg.publishConfig?.access, 'public', 'Package must use public access.');
+          NODE
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+      - name: Install npm with trusted publishing support
+        run: npm install --global npm@11.9.0
+      - run: npm ci
+      # prepublishOnly runs check + demo; prepack builds dist before upload.
+      # npm obtains short-lived credentials via GitHub OIDC, without an npm token.
+      - name: Test, build and publish
+        run: npm publish --access public
