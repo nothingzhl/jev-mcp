@@ -6,7 +6,7 @@
 
 前一轮实现已审查并保存为本地提交 `54d55d0`。复查包括输入/响应校验、请求上限、分母、错误与 unknown 区分、取消许可释放、SQLite 字段白名单和迁移。原有 70 项离线测试通过；新增基准资产校验随普通 check 执行。
 
-本次检查时，云进程没有 TYPESAFE_API_KEY，环境配置中也无已有绑定。已向环境草稿添加该凭证要求，HTTPS 目标仅 api.typesafe.ai；未填写任何凭证值。用户需在环境设置安全填写、保存并发布。草稿保存不等于密钥已注入或真实调用通过。
+最初检查缺少 TYPESAFE_API_KEY；后续已注入且平台报告 ready，真实请求也收到 HTTP 200。本次 3 次尝试诊断并修复了 Node 代理配置和 Score 浮点边界误报；三规则冒烟和基准仍未完成，详见 [真实调用记录](live-validation.md)。代理开关及启动说明已保存到环境草稿；保存草稿不等于已在未来任务生效。
 
 ## 样本设计与标注依据
 
@@ -52,11 +52,12 @@ node dist/cli.js evaluate --suite examples/benchmarks/triage.jsonl
 
 ## 密钥就绪后的执行顺序
 
-用户已在本会话授权小规模真实验证。先在环境设置安全填写 TYPESAFE_API_KEY，不在聊天、命令参数或文件中粘贴 key。确认变量注入后，首先每条规则运行 1 个合成样本，共最多 3 次请求，SDK 额外重试设为 0。任一步失败即停止后续调用并诊断，保留非零退出码。
+用户已在本会话授权小规模真实验证。凭证只从服务环境读取，不在聊天、命令参数或文件中粘贴 key。以下是初始执行计划；本次已消耗 3 次调试尝试，后续需扣除该数量。每条规则的冒烟仅取 1 个合成样本，SDK 额外重试设为 0。任一步失败即停止后续调用并诊断，保留非零退出码。
 
 ```sh
 mkdir -p .data
 evaluation_dir="$(mktemp -d .data/readiness-XXXXXX)"
+export NODE_USE_ENV_PROXY=1
 JEV_DB_PATH="$evaluation_dir/metadata.sqlite" JEV_MAX_RETRIES=0 node dist/cli.js evaluate --suite examples/benchmarks/rank.json --live --max-samples 1 --max-requests 1 --save > "$evaluation_dir/rank-smoke.json" &&
 JEV_DB_PATH="$evaluation_dir/metadata.sqlite" JEV_MAX_RETRIES=0 node dist/cli.js evaluate --suite examples/benchmarks/verify.json --live --max-samples 1 --max-requests 1 --save > "$evaluation_dir/verify-smoke.json" &&
 JEV_DB_PATH="$evaluation_dir/metadata.sqlite" JEV_MAX_RETRIES=0 node dist/cli.js evaluate --suite examples/benchmarks/triage.jsonl --live --max-samples 1 --max-requests 1 --save > "$evaluation_dir/triage-smoke.json"
@@ -74,4 +75,4 @@ JEV_DB_PATH="$evaluation_dir/metadata.sqlite" JEV_MAX_RETRIES=0 node dist/cli.js
 JEV_DB_PATH="$evaluation_dir/metadata.sqlite" JEV_MAX_RETRIES=0 node dist/cli.js evaluate --suite examples/benchmarks/triage.jsonl --live --max-samples 12 --max-requests 12 --save > "$evaluation_dir/triage-report.json"
 ```
 
-这些 live 命令尚未执行。实际结果应逐规则列出分子/分母、错误数和 actualModels，优先复核错误接受、关键项漏检、unknown 标签被归成具体类别，以及 review/knownCoverage。先核对标签与证据，再考虑规则修改并建立独立回归集。12 个合成案例不足以估计生产准确率或校准阈值；不会据此宣称模型质量通过。
+本次仅尝试了排序的第一个样本，修复后的复测、verify/triage 冒烟及全套仍未执行；不可据此声称三规则已通过。实际质量结果应逐规则列出分子/分母、错误数和 actualModels，优先复核错误接受、关键项漏检、unknown 标签被归成具体类别，以及 review/knownCoverage。先核对标签与证据，再考虑规则修改并建立独立回归集。12 个合成案例不足以估计生产准确率或校准阈值。

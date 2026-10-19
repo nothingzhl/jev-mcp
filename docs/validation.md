@@ -4,7 +4,7 @@
 
 ## 本轮实际执行
 
-- `npm run check`：strict 类型检查、71 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含后续新增的 36 个基准案例计划校验。
+- `npm run check`：strict 类型检查、72 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含 36 个基准案例计划校验和首次真实调用发现的 Score 浮点边界回归。
 - `npm run demo`：成功生成候选排序请求计划，无模型调用、无数据库写入。
 - 文档中的编译版 evaluate 命令：JSON 与 JSONL 计划、三个规则的固定预测评分均通过。
 - 编译版 compare：合成 A/B 报告保留原始分母与 unknown/review；unknownRecall 差值为 1（0/1 → 1/1）。这仅验证对比器。
@@ -33,6 +33,6 @@
 
 ## 尚未验证或实现
 
-本轮没有 TYPESAFE_API_KEY 的真实绑定，没有真实 Jev API 调用、实际计费、真实模型准确率、阈值校准或效率收益证据。合成 fixture、注入 fetch、报告中的 source 字段不构成这些证据。
+后续已完成凭证注入和 3 次真实调用尝试，HTTP 200 验证了鉴权及服务通路，但本地响应校验曾因浮点边界失败；修复已通过离线回归，尚未追加真实复测。详细范围和证据见 [真实调用记录](live-validation.md)。三规则冒烟、真实模型质量、实际费用、阈值校准及效率收益仍未验证；合成 fixture、注入 fetch、报告中的 source 字段不构成这些证据。
 
 长期运行、持久化 running 状态、进程中断后的在途恢复/exactly-once、多机共享数据库、降级迁移、输入采集适配器和 Web 控制台未实现。本轮多进程测试只验证本机初始化/迁移及元数据写入。真实质量评测需要另行授权与合适的标注样本，按 docs/evaluation.md 显式使用 live 和样本/请求上限。

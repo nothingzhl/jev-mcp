@@ -57,7 +57,9 @@ function answer(value: unknown, question: Question): Answer {
   const topLevel = question.criteria.length - 1;
   if (typeof score !== "number" || !Number.isFinite(score) || score < 0 || score > topLevel) return invalid();
   const expected = keys.reduce((total, key) => total + Number(key) * probabilities[key]!, 0);
-  if (Math.abs(score - expected) > 0.01) invalid();
+  // Keep the inclusive 0.01 rounding tolerance despite binary floating-point
+  // subtraction (e.g. 3.91 - 3.92 is -0.010000000000000231).
+  if (Math.abs(score - expected) > 0.01 + 1e-12) invalid();
   return { type: "score", score, legend, probabilities, confidence };
 }
 

@@ -4,6 +4,7 @@ import type { Config } from "../src/config.js";
 import type { EvaluationRequest } from "../src/core/contracts.js";
 import { JevError } from "../src/core/errors.js";
 import { TypeSafeProvider } from "../src/providers/typesafe.js";
+import { validateResponse } from "../src/providers/validation.js";
 
 const config: Config = { model: "jev-latest", dbPath: ":memory:", timeoutMs: 1_000, maxRetries: 0 };
 const request: EvaluationRequest = {
@@ -63,6 +64,23 @@ test("provider sends only model/state/questions and retains actual model, reques
 test("provider maps a missing response request ID to null", async () => {
   const provider = new TypeSafeProvider(config, { apiKey: "test", fetch: jsonFetch(validResponse()) });
   assert.equal((await provider.evaluate(request)).requestId, null);
+});
+
+test("score validation accepts inclusive decimal rounding boundaries and rejects larger mismatches", () => {
+  const scoreRequest: EvaluationRequest = { model: "synthetic", state: "synthetic rounding regression",
+    questions: { relevance: { type: "score", instructions: "Synthetic score", criteria: ["zero", "one", "two", "three", "four"] } } };
+  const data = (score: number) => ({ model: "synthetic", usage: { input_tokens: null, output_tokens: null },
+    answers: { relevance: { type: "score", score, confidence: .93,
+      legend: { "0": "zero", "1": "one", "2": "two", "3": "three", "4": "four" },
+      probabilities: { "0": 0, "1": 0, "2": 0, "3": .08, "4": .92 } } } });
+  // The mathematical expectation is 3.92. Both endpoints are within 0.01.
+  for (const score of [3.91, 3.93]) {
+    const validated = validateResponse(data(score), scoreRequest, undefined);
+    assert.deepEqual(validated.answers, data(score).answers); // Never rewrite the provider's score or probabilities.
+  }
+  for (const score of [3.9099, 3.9301]) {
+    assert.throws(() => validateResponse(data(score), scoreRequest, undefined), { code: "INVALID_RESPONSE" });
+  }
 });
 
 test("provider safely reports authentication errors without upstream bodies or credentials", async () => {
