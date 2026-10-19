@@ -14,7 +14,7 @@ const service = new JudgmentService({ config: readConfig({ JEV_MODEL: "jev-lates
   store() { throw new Error("Offline challenge preparation must not open SQLite"); } });
 
 test("new challenge plans match frozen digests, batch independent questions and send no labels", () => {
-  const saved = JSON.parse(readFileSync(new URL("../docs/evaluation-plans/challenge-v1.json", import.meta.url), "utf8")) as {
+  const saved = JSON.parse(readFileSync(new URL("../docs/evaluation-results/2026-10-19-probability-compatibility/challenge-plan.json", import.meta.url), "utf8")) as {
     status: string; networkCallsMade: number; qualityEvaluationPerformed: boolean; independentHumanReview: boolean;
     totals: { samples: number; plannedRequests: number; questions: number };
     suites: Array<{ file: string; plan: ReturnType<typeof planEvaluation>; goldCounts: Record<string, number> }>;

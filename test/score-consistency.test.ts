@@ -40,7 +40,7 @@ test("four recorded Score deviations receive recomputed rounding metadata and ma
     assert.ok(judgment.consistency!.maximumExpectation >= score - .005 - 1e-12);
     assert.deepEqual(validate(judgment).answers.candidate_0, judgment); // Replay is idempotent.
     const output = interpret({ task: "Synthetic task", candidates: [{ id: "a", title: "A", content: "Synthetic material" }] }, response);
-    assert.equal(output.recipeVersion, "1.1.0");
+    assert.equal(output.recipeVersion, "1.2.0");
     assert.equal(output.candidates[0]!.score, score / 4);
     assert.equal(output.candidates[0]!.requiresReview, true); // Even confidence=1.
     assert.equal(output.candidates[0]!.reviewReason, "score_rounding");
@@ -75,4 +75,42 @@ test("strict Score responses discard forged metadata and preserve stable ranking
   assert.deepEqual(output.candidates.map(c => c.judgment.score), [3.94, 3.94, 3.92]);
   const low = interpret({ ...input, candidates: [input.candidates[0]!] }, validate({ ...strict, confidence: .1 }));
   assert.equal(low.candidates[0]!.reviewReason, "low_confidence");
+});
+
+test("rounded Score mass below or above one requires joint feasibility and review without rewriting values", () => {
+  for (const source of [raw(.76, [.28, .67, .04, 0, 0]), raw(.76, [.28, .69, .04, 0, 0])]) {
+    const response = validate({ ...source, consistency: { requiresReview: false, reportedProbabilitySum: 1 } });
+    const judgment = response.answers.candidate_0!;
+    assert.equal(judgment.type, "score");
+    if (judgment.type !== "score") throw new Error("Wrong primitive");
+    assert.equal(judgment.score, source.score);
+    assert.equal(judgment.confidence, source.confidence);
+    assert.deepEqual(judgment.probabilities, source.probabilities);
+    const sum = Object.values(source.probabilities).reduce((total, p) => total + p, 0);
+    assert.equal(judgment.consistency?.reportedProbabilitySum, sum);
+    assert.equal(judgment.consistency?.requiresReview, true);
+    assert.deepEqual(validate(judgment).answers.candidate_0, judgment);
+    const output = interpret({ task: "Synthetic", candidates: [{ id: "a", title: "A", content: "Synthetic" }] }, response);
+    assert.equal(output.candidates[0]!.requiresReview, true); // confidence=1 is still review.
+    assert.equal(output.candidates[0]!.reviewReason, "probability_rounding");
+  }
+  assert.deepEqual(scoreAnswer({ ...raw(.75, [.25, .75, 0, 0, 0]),
+    consistency: { requiresReview: true, reportedProbabilitySum: .99 } }), raw(.75, [.25, .75, 0, 0, 0]));
+});
+
+test("rounded Score mass rejects impossible normalization, incompatible scores and extra decimal precision", () => {
+  for (const source of [
+    raw(.01, [.97, 0, 0, 0, 0]), // Upper bounds cannot reach total mass=1.
+    raw(.51, [.51, .51, 0, 0, 0]), // Lower bounds already exceed total mass=1.
+    raw(.74, [.28, .67, .04, 0, 0]), // Raw mean is within .01, but normalized intervals cannot explain score.
+    raw(.76, [.2801, .6699, .04, 0, 0]), raw(.7601, [.28, .67, .04, 0, 0]),
+  ]) assert.throws(() => validate({ ...source, consistency: { requiresReview: false } }), { code: "INVALID_RESPONSE" });
+});
+
+test("Choice still rejects rounded probability mass outside the original tolerance", () => {
+  const request: EvaluationRequest = { model: "synthetic", state: "Synthetic",
+    questions: { route: { type: "choice", instructions: "Synthetic route", criteria: { a: null, b: null } } } };
+  assert.throws(() => validateResponse({ model: "synthetic", usage: { input_tokens: null, output_tokens: null },
+    answers: { route: { type: "choice", choice: "a", confidence: 1, probabilities: { a: .5, b: .49 },
+      consistency: { policy: "rounded-2dp", requiresReview: false } } } }, request, undefined), { code: "INVALID_RESPONSE" });
 });

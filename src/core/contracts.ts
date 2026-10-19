@@ -19,6 +19,7 @@ export type ScoreConsistency = {
   policy: "rounded-2dp";
   requiresReview: true;
   reportedExpectation: number;
+  reportedProbabilitySum?: number;
   minimumExpectation: number;
   maximumExpectation: number;
 };

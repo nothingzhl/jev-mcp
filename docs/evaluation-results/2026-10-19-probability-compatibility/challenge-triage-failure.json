@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "evaluatorVersion": "1.0.0",
+  "id": "76a39d71-fd74-4b4e-a4db-dabb621b0cf4",
+  "suite": "challenge-v1-triage",
+  "suiteVersion": "1.0.0",
+  "suiteDigest": "8f8a65f8aa5fcdd1d4a87134481ac45f03c97f0782a9865f61f892d184c60b49",
+  "sampleDigest": "8f8a65f8aa5fcdd1d4a87134481ac45f03c97f0782a9865f61f892d184c60b49",
+  "recipeId": "triage-failure",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "jev-latest",
+  "actualModels": [
+    "jev-1.13.0"
+  ],
+  "source": "recorded",
+  "createdAt": "2026-10-19T10:16:00.864Z",
+  "totalSamples": 12,
+  "evaluatedSamples": 12,
+  "failedSamples": 0,
+  "metrics": {
+    "categoryAccuracy": {
+      "numerator": 12,
+      "denominator": 12,
+      "rate": 1
+    },
+    "knownCategoryAccuracy": {
+      "numerator": 8,
+      "denominator": 8,
+      "rate": 1
+    },
+    "unknownRate": {
+      "numerator": 4,
+      "denominator": 12,
+      "rate": 0.3333333333333333
+    },
+    "unknownRecall": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1
+    },
+    "knownCoverage": {
+      "numerator": 8,
+      "denominator": 8,
+      "rate": 1
+    },
+    "reviewRate": {
+      "numerator": 4,
+      "denominator": 12,
+      "rate": 0.3333333333333333
+    },
+    "errorRate": {
+      "numerator": 0,
+      "denominator": 12,
+      "rate": 0
+    }
+  },
+  "errors": {}
+}

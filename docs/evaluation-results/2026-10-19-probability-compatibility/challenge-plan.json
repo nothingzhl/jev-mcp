@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "dataset": "challenge-v1",
+  "preparedAt": "2026-10-19",
+  "status": "plan-only",
+  "independentHumanReview": false,
+  "networkCallsMade": 0,
+  "qualityEvaluationPerformed": false,
+  "totals": {
+    "samples": 36,
+    "plannedRequests": 36,
+    "questions": 89
+  },
+  "suites": [
+    {
+      "file": "examples/benchmarks/challenge-v1/rank.json",
+      "plan": {
+        "mode": "plan",
+        "suite": "challenge-v1-rank",
+        "suiteVersion": "1.0.1",
+        "recipeId": "rank-candidates",
+        "recipeVersion": "1.2.0",
+        "suiteDigest": "2df55217117e2013bdb009f6b3d2ae94939c4093da1cc143cbaca76f0d08c4af",
+        "sampleDigest": "2df55217117e2013bdb009f6b3d2ae94939c4093da1cc143cbaca76f0d08c4af",
+        "requestedModel": "jev-latest",
+        "availableSamples": 12,
+        "totalSamples": 12,
+        "plannedRequests": 12,
+        "questionCount": 48,
+        "networkCallMade": false
+      },
+      "goldCounts": {
+        "candidates": 48,
+        "keyItems": 16,
+        "topKSlots": 16,
+        "multiComponentSamples": 4
+      }
+    },
+    {
+      "file": "examples/benchmarks/challenge-v1/verify.json",
+      "plan": {
+        "mode": "plan",
+        "suite": "challenge-v1-verify",
+        "suiteVersion": "1.0.0",
+        "recipeId": "verify-claims",
+        "recipeVersion": "1.0.0",
+        "suiteDigest": "23df80530c0f9a9e62fca9ef1e3cb91913f886e448ea7286f9919634b348c276",
+        "sampleDigest": "23df80530c0f9a9e62fca9ef1e3cb91913f886e448ea7286f9919634b348c276",
+        "requestedModel": "jev-latest",
+        "availableSamples": 12,
+        "totalSamples": 12,
+        "plannedRequests": 12,
+        "questionCount": 17,
+        "networkCallMade": false
+      },
+      "goldCounts": {
+        "supported": 4,
+        "contradicted": 4,
+        "insufficient": 9,
+        "negativeClaims": 13,
+        "batchedSamples": 4
+      }
+    },
+    {
+      "file": "examples/benchmarks/challenge-v1/triage.jsonl",
+      "plan": {
+        "mode": "plan",
+        "suite": "challenge-v1-triage",
+        "suiteVersion": "1.0.0",
+        "recipeId": "triage-failure",
+        "recipeVersion": "1.0.0",
+        "suiteDigest": "8f8a65f8aa5fcdd1d4a87134481ac45f03c97f0782a9865f61f892d184c60b49",
+        "sampleDigest": "8f8a65f8aa5fcdd1d4a87134481ac45f03c97f0782a9865f61f892d184c60b49",
+        "requestedModel": "jev-latest",
+        "availableSamples": 12,
+        "totalSamples": 12,
+        "plannedRequests": 12,
+        "questionCount": 24,
+        "networkCallMade": false
+      },
+      "goldCounts": {
+        "environment": 2,
+        "dependency": 2,
+        "regression": 2,
+        "flaky": 2,
+        "unknown": 4
+      }
+    }
+  ],
+  "operation": "offline replan for rule 1.2.0; original preparation snapshot preserved"
+}

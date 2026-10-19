@@ -4,7 +4,7 @@
 
 ## 本轮实际执行
 
-- `TYPESAFE_API_KEY= npm run check`：strict 类型检查、79 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含第一批 36 个基准案例计划、全部历史响应重放、Score 浮点边界及保守舍入兼容，以及第二批 36 个案例的计划/标注资产和全部真实捕获响应重放。
+- `TYPESAFE_API_KEY= npm run check`：strict 类型检查、82 项离线测试、构建均通过；0 failed、0 cancelled、0 skipped、0 todo。包含两批 72 项历史响应重放、Score 浮点边界、分数/概率和的有界舍入兼容、强制复核及 Choice 保持原概率和校验。
 - `npm run demo`：成功生成候选排序请求计划，无模型调用、无数据库写入。
 - 文档中的编译版 evaluate 命令：JSON 与 JSONL 计划、三个规则的固定预测评分均通过。
 - 编译版 compare：合成 A/B 报告保留原始分母与 unknown/review；unknownRecall 差值为 1（0/1 → 1/1）。这仅验证对比器。
@@ -13,6 +13,7 @@
 - 第二批 challenge-v1：三个编译版 CLI 无 key 的计划输出与保存快照完全一致；共 36 个样本、89 个问题、36 个逻辑请求。新旧样本 ID/完整输入无重复，标注一一对应，证据负例 13 条，unknown 标签 4 项；请求 state 不包含标签或标注理由。准备阶段未调用模型，详见 [准备说明](challenge-v1.md)。
 - 第二批作者复核后重跑全部检查与三个 CLI 计划仍通过。排序套件 1.0.1 明确分页输入前提、修正失败即退出的合成重试循环；本地注入片段验证成功即停、失败后重试、耗尽抛错及 cursor 重复。全部标签保留，完整记录和调用前预算提案见 [复核记录](challenge-v1-review.md)；作者复核阶段没有独立人工复核或新增 API 调用。
 - 获新预算授权后，编译版 CLI 完成第二批 36 次真实请求，全部 HTTP 200，应用层 35 成功/1 INVALID_RESPONSE。重开 SQLite 的 36 条元数据及 3 份报告均核对；离线捕获重放的所有指标/错误与原始 live 报告一致。没有修改本轮规则、阈值、标签或重发失败案例，详见 [实测结果](evaluation-results/2026-10-19-challenge-v1/README.md)。
+- 后续排序规则 1.2.0 在 Score 概率和超出原容差时要求归一化/期望的联合舍入可行性，强制 probability_rounding/review；原始概率不重写。两批共 72 项历史响应离线可计分，第二批排序关键项 16/16、topK review 4/16；第一批及两批证据/归类指标不变。原始实测报告和数据库仍保留旧错误，本次新增调用为 0，见 [兼容重放](evaluation-results/2026-10-19-probability-compatibility/README.md)。
 
 ## 评测与存储覆盖
 

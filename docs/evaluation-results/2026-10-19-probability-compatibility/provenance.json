@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-19",
+  "operation": "offline reinterpretation of 72 historical responses",
+  "sourceCodeCommit": "653edc5",
+  "networkCalls": 0,
+  "newApiUsage": 0,
+  "originalReportsPreserved": true,
+  "originalDatabaseRecordsUnchanged": true,
+  "ruleVersion": "1.2.0",
+  "policy": "Score-only rounded-2dp joint probability-mass/expectation feasibility, mandatory review",
+  "comparisons": [
+    {
+      "batch": "readiness",
+      "recipeId": "rank-candidates",
+      "originalRecipeVersion": "1.1.0",
+      "currentRecipeVersion": "1.2.0",
+      "originalEvaluated": 12,
+      "currentEvaluated": 12,
+      "originalFailed": 0,
+      "currentFailed": 0
+    },
+    {
+      "batch": "readiness",
+      "recipeId": "verify-claims",
+      "originalRecipeVersion": "1.0.0",
+      "currentRecipeVersion": "1.0.0",
+      "originalEvaluated": 12,
+      "currentEvaluated": 12,
+      "originalFailed": 0,
+      "currentFailed": 0
+    },
+    {
+      "batch": "readiness",
+      "recipeId": "triage-failure",
+      "originalRecipeVersion": "1.0.0",
+      "currentRecipeVersion": "1.0.0",
+      "originalEvaluated": 12,
+      "currentEvaluated": 12,
+      "originalFailed": 0,
+      "currentFailed": 0
+    },
+    {
+      "batch": "challenge",
+      "recipeId": "rank-candidates",
+      "originalRecipeVersion": "1.1.0",
+      "currentRecipeVersion": "1.2.0",
+      "originalEvaluated": 11,
+      "currentEvaluated": 12,
+      "originalFailed": 1,
+      "currentFailed": 0
+    },
+    {
+      "batch": "challenge",
+      "recipeId": "verify-claims",
+      "originalRecipeVersion": "1.0.0",
+      "currentRecipeVersion": "1.0.0",
+      "originalEvaluated": 12,
+      "currentEvaluated": 12,
+      "originalFailed": 0,
+      "currentFailed": 0
+    },
+    {
+      "batch": "challenge",
+      "recipeId": "triage-failure",
+      "originalRecipeVersion": "1.0.0",
+      "currentRecipeVersion": "1.0.0",
+      "originalEvaluated": 12,
+      "currentEvaluated": 12,
+      "originalFailed": 0,
+      "currentFailed": 0
+    }
+  ],
+  "sources": [
+    {
+      "file": "docs/evaluation-results/2026-10-19-score-compatibility/rank-predictions.json",
+      "sha256": "3d785a32e3f010f35d444710ea9d5e6da19c6092ac0b23eecb7ce048a01762e4"
+    },
+    {
+      "file": "docs/evaluation-results/2026-10-19-score-compatibility/verify-predictions.json",
+      "sha256": "cb57f911d45c2d0113fac8911fd2cecfcd10490640a0d67250cf636d0f1e17e0"
+    },
+    {
+      "file": "docs/evaluation-results/2026-10-19-score-compatibility/triage-predictions.json",
+      "sha256": "83a18a234c9cf12ec67d66e15b64e7f4e2760790a90d25a0734c9b6f6ae97ff8"
+    },
+    {
+      "file": "docs/evaluation-results/2026-10-19-challenge-v1/captures.json",
+      "sha256": "da5ff74716d5419fc1e070635b7bcc1c12e76d3b1754c4842d91b8cbb78cc10d"
+    }
+  ]
+}

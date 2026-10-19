@@ -19,11 +19,14 @@ function offline(model = "synthetic-a") {
 
 test("all 36 captured benchmark responses replay offline with conservative Score review and unchanged other metrics", () => {
   const results = new URL("../docs/evaluation-results/2026-10-19-score-compatibility/", import.meta.url);
+  const replays = new URL("../docs/evaluation-results/2026-10-19-probability-compatibility/", import.meta.url);
   const files = [["rank.json", "rank"], ["verify.json", "verify"], ["triage.jsonl", "triage"]] as const;
   for (const [suiteFile, prefix] of files) {
     const labeled = parseSuiteText(readFileSync(new URL(`../examples/benchmarks/${suiteFile}`, import.meta.url), "utf8"));
-    const predictions: unknown = JSON.parse(readFileSync(new URL(`${prefix}-predictions.json`, results), "utf8"));
-    const expected = parseReport(JSON.parse(readFileSync(new URL(`${labeled.recipeId}.json`, results), "utf8")));
+    const predictions: unknown = JSON.parse(readFileSync(prefix === "rank"
+      ? new URL("readiness-rank-predictions.json", replays) : new URL(`${prefix}-predictions.json`, results), "utf8"));
+    const expected = parseReport(JSON.parse(readFileSync(new URL(`readiness-${labeled.recipeId}.json`, replays), "utf8")));
+    const original = parseReport(JSON.parse(readFileSync(new URL(`${labeled.recipeId}.json`, results), "utf8")));
     const actual = evaluatePredictions(labeled, predictions, offline("jev-latest"));
     assert.equal(actual.source, "recorded");
     assert.equal(actual.evaluatedSamples, 12);
@@ -31,6 +34,7 @@ test("all 36 captured benchmark responses replay offline with conservative Score
     assert.equal(actual.recipeVersion, expected.recipeVersion);
     assert.deepEqual(actual.actualModels, ["jev-1.13.0"]);
     assert.deepEqual(actual.metrics, expected.metrics);
+    assert.deepEqual(actual.metrics, original.metrics);
     if (labeled.recipeId === "rank-candidates") {
       assert.deepEqual(actual.metrics.keyItemHitRate, metric(14, 14));
       assert.deepEqual(actual.metrics.reviewRate, metric(11, 37));

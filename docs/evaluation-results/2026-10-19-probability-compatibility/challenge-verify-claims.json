@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "evaluatorVersion": "1.0.0",
+  "id": "3c684f87-ba22-4341-97ad-661c0d606fb4",
+  "suite": "challenge-v1-verify",
+  "suiteVersion": "1.0.0",
+  "suiteDigest": "23df80530c0f9a9e62fca9ef1e3cb91913f886e448ea7286f9919634b348c276",
+  "sampleDigest": "23df80530c0f9a9e62fca9ef1e3cb91913f886e448ea7286f9919634b348c276",
+  "recipeId": "verify-claims",
+  "recipeVersion": "1.0.0",
+  "requestedModel": "jev-latest",
+  "actualModels": [
+    "jev-1.13.0"
+  ],
+  "source": "recorded",
+  "createdAt": "2026-10-19T10:16:00.863Z",
+  "totalSamples": 12,
+  "evaluatedSamples": 12,
+  "failedSamples": 0,
+  "metrics": {
+    "falseAcceptanceRate": {
+      "numerator": 0,
+      "denominator": 13,
+      "rate": 0
+    },
+    "acceptanceErrorRate": {
+      "numerator": 0,
+      "denominator": 4,
+      "rate": 0
+    },
+    "supportedAcceptanceRate": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1
+    },
+    "verdictAccuracy": {
+      "numerator": 16,
+      "denominator": 17,
+      "rate": 0.9411764705882353
+    },
+    "reviewRate": {
+      "numerator": 9,
+      "denominator": 17,
+      "rate": 0.5294117647058824
+    },
+    "errorRate": {
+      "numerator": 0,
+      "denominator": 12,
+      "rate": 0
+    }
+  },
+  "errors": {}
+}

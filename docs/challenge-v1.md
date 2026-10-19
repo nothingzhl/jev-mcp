@@ -6,9 +6,11 @@
 
 已完成[作者逐例复核](challenge-v1-review.md)，保留全部标签，修正分页输入前提与合成重试循环；排序套件升至 1.0.1，规则仍为 1.1.0。证据/归类套件仍为 1.0.0。[真实预算记录](evaluation-plans/challenge-v1.live-budget.json)为关闭重试的最多 36 次 SDK 尝试，已获授权并用完，没有额外冒烟或重发。
 
+上述版本指当时实测。当前排序规则为 1.2.0，样本头已明确更新 recipeVersion；Score 概率和兼容的[离线重放](evaluation-results/2026-10-19-probability-compatibility/README.md)可计分 36/36，仍强制复核。没有新实测或修改旧错误记录。
+
 ## 套件与覆盖
 
-| 套件 | 规则版本 | 样本 / 问题数 | 标签与未来指标分母 |
+| 套件 | 实测规则版本 | 样本 / 问题数 | 标签与完整成功时的指标分母 |
 | --- | --- | --- | --- |
 | [排序](../examples/benchmarks/challenge-v1/rank.json) | 1.1.0 | 12 / 48 | 48 个候选、16 个关键项、topK 总位置 16；4 项要求两个组成部分 |
 | [证据](../examples/benchmarks/challenge-v1/verify.json) | 1.0.0 | 12 / 17 | supported 4、contradicted 4、insufficient 9；负例共 13 条 |
@@ -34,7 +36,7 @@ TYPESAFE_API_KEY= node dist/cli.js evaluate --suite examples/benchmarks/challeng
 TYPESAFE_API_KEY= node dist/cli.js evaluate --suite examples/benchmarks/challenge-v1/triage.jsonl --model jev-latest
 ```
 
-三个 evaluate 输出与已保存的调用前[计划快照](evaluation-plans/challenge-v1.json)中对应的 plan 一致，包含版本、样本摘要、问题数及 networkCallMade=false。快照描述离线准备，只记录 requestedModel=jev-latest；实际模型和质量指标在独立实测报告中。计划由现有 planEvaluation 生成，快照可用以上三个命令复现；标签和标注理由不进入请求 state。
+三个 evaluate 输出与当前规则 1.2.0 的[离线重规划](evaluation-results/2026-10-19-probability-compatibility/challenge-plan.json)中对应的 plan 一致，包含版本、样本摘要、问题数及 networkCallMade=false。原调用前的[计划快照](evaluation-plans/challenge-v1.json)保留当时规则 1.1.0；两份计划都只记录 requestedModel=jev-latest，实际模型和质量指标在独立实测报告中。计划由现有 planEvaluation 生成；标签和标注理由不进入请求 state。
 
 离线测试校验完整 schema、当前规则版本、全部请求的大小与批量结构、计划摘要、标签分布、多声明与多组件覆盖、标注一一对应、无第一批样本/完整输入复用、无 provider 或数据库初始化。它不能证明自然语言标签正确，也不能测出模型置信度、Score 舍入兼容率或 review 实际比例。
 

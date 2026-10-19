@@ -50,6 +50,8 @@ node dist/cli.js evaluations --limit 20
 
 [第二批合成挑战集](docs/challenge-v1.md)包含 36 个新案例、17 条证据声明及 48 个排序候选。[实测](docs/evaluation-results/2026-10-19-challenge-v1/README.md)完成 36 次调用、35 项可计分；证据错误接受 0/13，归类命中 12/12，排序保留 1 项概率和校验错误。尚无独立人工复核或生产质量结论。
 
+当前排序规则为 1.2.0，增加 Score 概率和的有界舍入兼容，强制 probability_rounding/review，Choice 保持原校验。[两批历史离线重放](docs/evaluation-results/2026-10-19-probability-compatibility/README.md)共 72/72 可计分；第二批排序关键项 16/16、topK review 4/16。原始错误记录保留，本次兼容修复没有新增调用，官方小数精度契约仍未确认。
+
 真实调用需要在服务进程环境中安全配置 `TYPESAFE_API_KEY`，然后去掉 `--dry-run`。不要把 key 放进命令参数、对话、配置示例或版本库。`.env.example` 仅供参考；程序不会自动加载 `.env`。`doctor` 只报告 key 是否存在，不验证有效性。
 
 真实调用会把显式输入的材料发送到 TypeSafe 并产生 API 用量。服务不扫描仓库、不执行测试命令。CLI 的 dry-run 输出包含显式提供的原始材料，保存或分享前自行检查。

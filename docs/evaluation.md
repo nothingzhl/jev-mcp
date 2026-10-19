@@ -6,6 +6,8 @@
 
 另有[第二批新合成挑战集](challenge-v1.md)：36 个新案例，增加多组件排序、多声明证据隔离和原因不明边界；[实测结果](evaluation-results/2026-10-19-challenge-v1/README.md)为 35 项可计分、1 项响应错误。调用前的预标注及[计划快照](evaluation-plans/challenge-v1.json)独立保存，尚无独立人工复核，不复用第一批输入或预测。
 
+当前排序规则 1.2.0 的[概率和兼容离线重放](evaluation-results/2026-10-19-probability-compatibility/README.md)将两批 72 项历史响应全部计分，新增兼容回答仍强制 review。当前套件/预测头绑定新规则，旧实测和旧计划保持历史版本；重放结果不写回原调用记录。
+
 ## 可直接运行的离线流程
 
 在仓库根目录完成 `npm ci`、`npm run build` 后：
