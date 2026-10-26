@@ -1,5 +1,5 @@
 {
-  "name": "jev-mcp",
+  "name": "jev-judgment-mcp",
   "version": "0.1.0",
   "description": "Local MCP and CLI scaffolding for versioned TypeSafe Jev judgments",
   "type": "module",
