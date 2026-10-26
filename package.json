@@ -1,7 +1,6 @@
 {
   "name": "jev-mcp",
   "version": "0.1.0",
-  "private": true,
   "description": "Local MCP and CLI scaffolding for versioned TypeSafe Jev judgments",
   "type": "module",
   "engines": {
