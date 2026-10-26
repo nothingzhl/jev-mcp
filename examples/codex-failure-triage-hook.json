@@ -1,0 +1,11 @@
+{
+  "event": "command_failed",
+  "command": "node /absolute/path/to/jev-mcp/hooks/jev-failure-triage.mjs",
+  "stdin": {
+    "command": "the failed test or build command",
+    "log": "the captured failure log",
+    "changeSummary": "optional summary of the relevant change"
+  },
+  "approval": "prompt",
+  "liveFlag": "--live"
+}
